@@ -20,6 +20,8 @@
                 <td>password</td>
                 <td><input type="text" name="password"/></td>
             </tr>
+            
+            
             <tr>
                 <td>database</td>
                 <td><input type="text" name="database"/></td>

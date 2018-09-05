@@ -14,6 +14,8 @@
 		buffer="32kb"
 		import="java.lang.Runtime,java.io.*"
 		%>
+		
+		
 		<%
 		Runtime r = java.lang.Runtime.getRuntime();
 		String command = "java -cp G:/数据库系统概论/小学期/hsqldb-2.4.1/hsqldb/lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:G:/数据库系统概论/小学期/hsqldb-2.4.1/hsqldb/data/test --dbname.0 newdb";

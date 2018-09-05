@@ -24,6 +24,7 @@
   // 2、获取连接
   Connection conn = DriverManager.getConnection(dbs, username, password);
 
+  
   // 3、创建语句
   Statement stmt = conn.createStatement();
   ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");
