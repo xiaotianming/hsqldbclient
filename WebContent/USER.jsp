@@ -11,6 +11,7 @@
 <body>
 <form action="logindb.jsp">
         <table align="center" valign="center">
+        	
             <tr><th>用户创建成功</th></tr>
             <tr><td><input type="submit" value="重新登录"></td></tr>
          </table>
