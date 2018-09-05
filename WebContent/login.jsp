@@ -12,6 +12,8 @@
 <%
 
   String username = request.getParameter("username");
+
+
   session.setAttribute("username",username);  
 
   String password = request.getParameter("password");
