@@ -21,6 +21,8 @@
   String dbs="jdbc:hsqldb:hsql://localhost/"+database;
   Class.forName("org.hsqldb.jdbcDriver");
 
+  
+  
   // 2、获取连接
   Connection conn = DriverManager.getConnection(dbs, username, password);
 
