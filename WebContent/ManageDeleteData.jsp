@@ -92,7 +92,7 @@
             	<h3 class="text-primary" style="text-align:center;">        
                 		<%out.println(tbName);%>
             	</h3>
-        		<%
+        		<% 
         			Statement stat = conn.createStatement();
         			String sql="select COLUMN_NAME from information_schema.COLUMNS where table_name = '"+tbName+"'";
         		    ResultSet per = stat.executeQuery(sql);  //用于返回结果

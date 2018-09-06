@@ -11,7 +11,7 @@
 %>  
 <html> 
 <head> 
-<title>delete_message</title> 
+<title>delete_message</title>  
 </head> 
 <body> 
 <br/>

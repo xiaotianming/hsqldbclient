@@ -10,7 +10,7 @@
    response.setHeader("iso-8859-1","utf-8"); 
 %>  
 <html> 
-<head> 
+<head>  
 <title>insert_message</title> 
 </head> 
 <body> 

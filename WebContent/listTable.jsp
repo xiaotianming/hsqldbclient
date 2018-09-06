@@ -169,7 +169,7 @@
 										<button class="btn btn-warning btn-sm" type="submit">
           									<span class="glyphicon glyphicon-pencil"></span> 修改数据
         								</button>
-        							</form>	
+        							</form>	 
         						</div>
  								<div class="btn-group">						
         							<form action="ManageDeleteData.jsp" method="post">

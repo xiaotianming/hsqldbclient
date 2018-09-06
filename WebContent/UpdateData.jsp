@@ -9,7 +9,7 @@
    response.setContentType("text/html; charset=utf-8");  
    response.setHeader("iso-8859-1","utf-8"); 
 %>  
-<html> 
+<html>  
 <head> 
 <title>update_message</title> 
 </head> 

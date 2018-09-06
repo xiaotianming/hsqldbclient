@@ -145,7 +145,7 @@
     						<td> 请输入修改内容</td>
 							<% 
 								for(i=1;i<num;i++)
-								{
+								{ 
 								%>
 									<td><input type = "text" name="<%=vec.get(i)%>" class="form-control"/></td>
 								<%
