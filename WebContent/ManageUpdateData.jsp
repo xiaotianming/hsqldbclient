@@ -116,50 +116,55 @@
 						<%
 							}
     					%>
+    					<td> 选择  </td>
     					</tr>
-  						</thead>
-  						<tbody>
+  					</thead>
+  					<tbody>
+    					<tr>
+    					<form action="UpdateData.jsp" method="post">
     					<%
     						while(per.next()) 
     						{
-    					%>
-    						<tr>
-    						<%
+    						%>
+    							<tr>
+    							<%
+    							String key=per.getString(1);
     							for(i=1;i<=num;i++)
     							{
-    						%>
-    							<td><%=per.getString(i)%></td>
-    						<%
-    							}
-    						%>
-    						</tr>
-    							<%
-    							}  
     							%>
-    							
+    							<td><%=per.getString(i)%></td>
+    							<%
+    							}
+    							%>
+    							<td><input type="radio" name="key" value="<%=key%>" /></td>
+    							</tr>
+    						<%
+    						}  
+    						%>
     						<tr>
-    							<form action="InsertData.jsp" method="post">
-									<% 
-										for(i=0;i<num;i++)
-									{
-									%>
-										<td><input type = "text" name="<%=vec.get(i)%>" class="form-control"/></td>
-									<%
-									}
-									%> 
+    						<td> 请输入修改内容</td>
+							<% 
+								for(i=1;i<num;i++)
+								{
+								%>
+									<td><input type = "text" name="<%=vec.get(i)%>" class="form-control"/></td>
+								<%
+								}
+							%> 
+							<td> &nbsp </td>
 							</tr>
 							<tr>
-								<button class="btn btn-info btn-sm" type="submit">
-          							<span class="glyphicon glyphicon-plus"></span> 添加
-        						</button>
-        						<br></br>
+							<button class="btn btn-info btn-sm" type="submit">
+          						<span class="glyphicon glyphicon-plus"></span> 修改
+        					</button>
+        					<br></br>
         					</tr>
-        						   </form>		
-        					</tbody>
-						</table>
-            		</div>
-        		</div>
-    		</div>	   			
-    	</div>   
+        					</form>		
+        			</tbody>
+				</table>
+            </div>
+        </div>
+    </div>	   			
+  </div>   
 </body>
 </html>
