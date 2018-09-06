@@ -21,8 +21,6 @@
     	<div class="container-fluid">
     		<div class="navbar-header">
     		    <a class="navbar-brand">主菜单</a>
-    		    
-    		    
     		</div>
     		<div>
         	<ul class="nav navbar-nav">
