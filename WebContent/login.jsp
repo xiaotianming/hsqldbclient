@@ -16,30 +16,31 @@
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../js/login.js"></script>
+	
 </head>
 
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
-		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>		
+		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>
 	</div>
 	<br><br>
-	<form class="form-horizontal" role="form" action="logindb.jsp">
+	<form class="form-horizontal" role="form" action="index.jsp">
 		<div class="form-group">
 			<label for="name" class="col-sm-2 control-label">名字</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" name="firstname" placeholder="请输入用户名">
+				<input type="text" class="form-control" id="firstname" placeholder="请输入用户名">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="password" class="col-sm-2 control-label">密码</label>
 			<div class="col-sm-8">
-				<input type="password" class="form-control" name="password" placeholder="请输入密码">
+				<input type="password" class="form-control" id="password" placeholder="请输入密码">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="dbName" class="col-sm-2 control-label">数据库</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" name="dbName" placeholder="请输入数据库名">
+				<input type="text" class="form-control" id="dbName" placeholder="请输入数据库名">
 			</div>
 		</div>
 		

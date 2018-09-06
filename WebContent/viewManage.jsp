@@ -138,7 +138,8 @@
 										</div>
 									</div>
 									<br>
-									<textarea id="outputArea" class="form-control" rows="5" placeholder="查询结果输出"></textarea>
+									<div class="well">
+									</div>
   								</div>
 							</form>
             			</div>

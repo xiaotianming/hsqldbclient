@@ -16,24 +16,22 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="../js/createTable.js"></script>
+	<script type="text/javascript" src="/js/createTable.js"></script>
 	
 	<script>
 		$(document).ready(function(){
 			var flag=0;
-			var className=["","one","two","three","four","five","six","seven","eight","nine","ten"];
-			var deleteFunName=["","deleteOne()","deleteTwo()","deleteThree()","deleteFour()","deleteFive()","deleteSix()","deleteSeven()","deleteEight()","deleteNine()","deleteTen()"];
 			$("#addColumn").click(function(){
 				flag++;
 				
-			    $("tbody").append("<tr class='"+className[flag]+"'>"
+			    $("tbody").append("<tr>"
 			    +"<th><input id='columnName' type='text' class='form-control'></th>"
 			    +"<th><input id='dataType' type='text' class='form-control'></th>"
 			    +"<th><input id='length' type='text' class='form-control'></th>"
 			    +"<th><input id='primaryKey' type='checkbox'></th>"
 			    +"<th><input id='isNull' type='checkbox'></th>"
 			    +"<th><input id='detail' type='text' class='form-control'></th>"
-			    +"<th><button type='button' class='btn btn-info btn-sm' onclick="+deleteFunName[flag]+">"
+			    +"<th><button type='button' class='btn btn-info btn-sm' onclick='deleteData(this)'>"
 			    +"<span class='glyphicon glyphicon-trash'></span> 删除</button></th>"
 			    +"</tr>");
 			 
@@ -41,43 +39,14 @@
 			$("#deleteColumn").click(function(){
 				$("tr").remove(".test");
 			});
-			/*$("#saveButton").click(function(){
-				var tableNameValue=$("#tableName").val();
-				alert(tableNameValue);
-				window.location.href="test.jsp?tableName="+tableNameValue;
-			});*/
 		});
-		function deleteOne(){
-			$("tr").remove(".one");
+		function deleteData(obj){
+			var res = confirm('确认要删除吗？');
+			if(res == true)
+			{
+				$(obj).parents("tr").remove();
+			}						
 		}
-		function deleteTwo(){
-			$("tr").remove(".two");
-		}
-		function deleteThree(){
-			$("tr").remove(".three");
-		}
-		function deleteFour(){
-			$("tr").remove(".four");
-		}
-		function deleteFive(){
-			$("tr").remove(".five");
-		}
-		function deleteSix(){
-			$("tr").remove(".six");
-		}
-		function deleteSeven(){
-			$("tr").remove(".seven");
-		}
-		function deleteEight(){
-			$("tr").remove(".eight");
-		}
-		function deleteNine(){
-			$("tr").remove(".nine");
-		}
-		function deleteTen(){
-			$("tr").remove(".ten");
-		}
-
 	</script>
 </head>
 </head>
@@ -98,7 +67,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">

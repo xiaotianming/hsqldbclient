@@ -17,7 +17,6 @@
 		$(document).ready(function(){
   			$("#clearButton").click(function(){
     			$("#inputArea").val("");
-  				$("#outputArea").val("");
   			});
 		});
 	</script>
@@ -98,7 +97,8 @@
         				</button>
         			</div>
         			<br>
-    				<textarea id="outputArea" class="form-control" rows="25"></textarea>
+        			<div class="well">
+        			</div>
   				</div>
 			</form>
 		</div>
