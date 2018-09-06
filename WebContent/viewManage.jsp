@@ -21,6 +21,10 @@
   			$("#clearButton").click(function(){
     			$("#inputArea").val("");
   			});
+  			$("#createButton").click(function(){
+  				var inputValue= $("#inputArea").val();
+  				window.location.href="createview.jsp?statement="+inputValue;
+  			});
 		});
 	</script>
 </head>
@@ -86,8 +90,8 @@
 									<div class="btn-toolbar" role="toolbar">
 										<div class="btn-group">
 										<!--#代替跳转JSP-->
-    										<a href="#" class="btn btn-info btn-sm">
-          										<span class="glyphicon glyphicon-play"></span> 运行
+    										<a id="createButton" class="btn btn-info btn-sm">
+          										<span class="glyphicon glyphicon-play"></span> 创建
         									</a>
 									</div>
 										<div class="btn-group">

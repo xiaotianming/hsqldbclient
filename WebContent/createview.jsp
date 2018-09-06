@@ -6,44 +6,46 @@
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.io.IOException"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>创建成功</title>
+<title>创建视图</title>
 </head>
 <body>
+
 <%
+String result = "";
 
-  String words = request.getParameter("statement");
-  
-  //String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-  Class.forName("org.hsqldb.jdbcDriver");
-
-  // 2、获取连接
-  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
-  
-  // 3、创建语句
-  Statement stmt = conn.createStatement();
-  /*ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.VIEWS where TABLE_SCHEMA='PUBLIC';");
-  String[] s=rs.split(" ");
-  for(int i=0;i<s.length;i++)
-  {
-	  if(s[i].toLowerCase().equals("viewname"))
-	  {
-		  
-		  break;
-	  }
-  }
-  if()*/
-  try{
+try{
+	  String words = request.getParameter("statement");
+	  Class.forName("org.hsqldb.jdbcDriver");
+	
+	  // 2、获取连接
+	  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
+	  
+	  // 3、创建语句
+	  Statement stmt = conn.createStatement();
 	  stmt.execute(words);
+	  %>
+	  <h1>
+	  <%
 	  out.println("视图创建成功");
-  }
+	  %>
+	  </h1>
+	  <%
+	}
   catch(Exception e)
   {
+	  %>
+	  <h1>
+	  <%
 	  out.println("视图创建失败");
+	  %>
+	  </h1>
+	  <%
 	  e.printStackTrace();
   }
 
   %>
-<form action="cvpage.jsp">
+ 
+<form action="viewManage.jsp">
 <input type="submit" value="返回">
 </form>
 </body>
