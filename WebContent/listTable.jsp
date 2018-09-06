@@ -13,14 +13,21 @@
       
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 	<script type="text/javascript">
-		$(function () { $('#One').collapse('hide')});
-		$(function () { $('#Two').collapse('hide')});
-		$(function () { $('#Three').collapse('hide')});
-	</script> 
-	
+		$(function ("#aa") { $(flag).collapse('hide')});
+		$(function ("#aaa") { $(flag).collapse('hide')});
+		$(function ("#aaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaaaaaa") { $(flag).collapse('hide')});
+		$(function ("#aaaaaaaaaaaaa") { $(flag).collapse('hide')});
+   </script>
 </head>
 <body>
 
@@ -37,7 +44,7 @@
             	<li class="dropdown">
             		<a href="#" class="dropdown-toggle" data-toggle="dropdown">表格<b class="caret"></b></a>
                 	<ul class="dropdown-menu">
-                    	<li><a href="listTableName">查询所有</a></li>
+                    	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
                 	    <li><a href="#">其它</a></li>
                 	</ul>
@@ -80,19 +87,22 @@
     		  // 3、创建语句
     		Statement stmt = conn.createStatement();
     		ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");
+    		String a="a";
     		  while(rs.next()) {
-    				String name = rs.getString("TABLE_NAME");			
+    				String name = rs.getString("TABLE_NAME");	
+    				a=a+"a";
       		%>
     			<div class="panel panel-warning">
         			<div class="panel-heading">
-            			<h4 class="panel-title">
-                			<a data-toggle="collapse" data-parent="#accordion" href="#One">
-                				<%out.println(name); %>
+            			<h4 class="panel-title">        
+                			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
+                				<%System.out.print(a);
+    				             out.println(name);%>
                 				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
                 			</a>
             			</h4>
         			</div>
-        			<div id="One" class="panel-collapse collapse in">
+        			<div id=<%=a%> class="panel-collapse collapse in">
             			<div class="panel-body">
                 			<table class="table table-bordered">
   								<thead>
