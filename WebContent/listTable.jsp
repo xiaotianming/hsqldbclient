@@ -15,18 +15,15 @@
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 	<script type="text/javascript">
-		$(function ("#aa") { $(flag).collapse('hide')});
-		$(function ("#aaa") { $(flag).collapse('hide')});
-		$(function ("#aaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaaaaaa") { $(flag).collapse('hide')});
-		$(function ("#aaaaaaaaaaaaa") { $(flag).collapse('hide')});
+		$(document).ready(function(){
+			var flag=[];
+			var a="#a";
+			for(var i=0;i<10;i++){
+				a=a+"a";
+				flag[i]=a;
+				$(function () { $(flag).collapse('hide')});
+			}
+		});
    </script>
 </head>
 <body>
@@ -96,8 +93,7 @@
         			<div class="panel-heading">
             			<h4 class="panel-title">        
                 			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
-                				<%System.out.print(a);
-    				             out.println(name);%>
+                				<%out.println(name);%>
                 				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
                 			</a>
             			</h4>
