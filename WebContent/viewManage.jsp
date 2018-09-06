@@ -50,7 +50,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable.jsp">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -139,6 +139,7 @@
 									</div>
 									<br>
 									<div class="well">
+										填入查询之后的结果
 									</div>
   								</div>
 							</form>
