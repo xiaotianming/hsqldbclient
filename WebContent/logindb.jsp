@@ -1,32 +1,76 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<!--主功能界面：现可点击运行界面 
+	a href = #
+	#表示带跳转的界面
+	by huyuhan 09-04-->
+<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.sql.Connection"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Hyper SQL登录界面</title>
+<html>
+<head>
+	<title>HSQL Manage System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="login.jsp">
-        <table align="center" valign="center">
-            <tr><th>Hyper SQL登录界面</th></tr>
-            <tr>
-                <td>username</td>
-                <td width="500px"><input type="text" name="username"/></td>
-            </tr>
-            <tr>
-                <td>password</td>
-                <td><input type="text" name="password"/></td>
-            </tr>        
-            
-            <tr>
-                <td>database</td>
-                <td><input type="text" name="database"/></td>
-            </tr>
-            <tr><td><input type="submit" value="登录"></td></tr>
-        </table>
-    </form>
+	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
+  		<h1><font color="#FFFFFF">HSQL Manage System</font></h1> 
+	</div>
+	<nav class="navbar navbar-default" role="navigation">
+    	<div class="container-fluid">
+    		<div class="navbar-header">
+    		    <a class="navbar-brand">主菜单</a>
+    		</div>
+    		<div>
+        	<ul class="nav navbar-nav">
+            	<li class="dropdown">
+            		<a href="#" class="dropdown-toggle" data-toggle="dropdown">表格<b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                    	<li><a href="listTable.jsp">查询所有</a></li>
+                    	<li><a href="createTable.jsp">创建</a></li>
+                	    <li><a href="#">其它</a></li>
+                	</ul>
+				</li>
+            	<li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">视图<b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                    	<li><a href="viewManage.jsp">视图管理</a></li>
+                	</ul>
+            	</li>
+            	<li><a href="working.jsp">运行界面</a></li>
+            	<li class="dropdown">
+                	<a href="#" class="dropdown-toggle" data-toggle="dropdown">用户系统<b class="caret"></b></a>
+                	<ul class="dropdown-menu">
+                    	<li><a href="listUser.jsp">所有用户</a></li>
+                    	<li><a href="createUser.jsp">创建用户</a></li>
+                    	<li><a href="login.jsp">退出登录</a></li>
+                	    <li><a href="#">其它</a></li>
+                	</ul>
+            	</li>
+        	</ul>
+    		</div>
+    	</div>
+	</nav>
+	<%
+	  String username = request.getParameter("firstname");
+	  session.setAttribute("username",username);  
+	  String password = request.getParameter("password");
+	  session.setAttribute("password",password);
+	  String database = request.getParameter("dbName");
+	  session.setAttribute("database",database);
+	  String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+	  Class.forName("org.hsqldb.jdbcDriver");
+	  //System.out.print(username);
+	  //System.out.print(password);
+	  //System.out.print(dbs);
+	  // 2、获取连接
+	  Connection conn = DriverManager.getConnection(dbs, username, password);
+
+	  // 3、创建语句
+	  Statement stmt = conn.createStatement();
+	%>
 </body>
 </html>

@@ -11,31 +11,35 @@
 	<meta http-equiv="Content-Type" content="textml; charset=UTF-8">
 	
 	<title>HSQL Manage System</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/createTable.js"></script>
 	
 	<script>
 		$(document).ready(function(){
 			var flag=0;
-			var className=["","one","two","three","four"];
-			var deleteFunName=["","deleteOne","deleteTwo","deleteThree","deleteFour"];
+			var className=["","one","two","three","four","five","six","seven","eight","nine","ten"];
+			var deleteFunName=["","deleteOne()","deleteTwo()","deleteThree()","deleteFour()","deleteFive()","deleteSix()","deleteSeven()","deleteEight()","deleteNine()","deleteTen()"];
 			$("#addColumn").click(function(){
 				flag++;
-				alert(className[flag]+","+deleteFunName[flag]);
-			    $("tbody").append("<tr class='"+className[flag]+"'><th><input id='columnName' type='text' class='form-control'></th><th><input id='dataType' type='text' class='form-control'></th><th><input id='length' type='text' class='form-control'></th><th><input id='primaryKey' type='checkbox'></th><th><input id='isNull' type='checkbox'></th><th><input id='detail' type='text' class='form-control'></th><th><button id='"+deleteFunName[flag]+"' type='button' class='btn btn-info btn-sm'><span class='glyphicon glyphicon-trash'></span> 删除</button></th></tr>");
-				$("#add").prop("class",className[flag]);
-				$("#buttonColumn").prop("id",deleteFunName[flag]);
+				
+			    $("tbody").append("<tr class='"+className[flag]+"'>"
+			    +"<th><input id='columnName' type='text' class='form-control'></th>"
+			    +"<th><input id='dataType' type='text' class='form-control'></th>"
+			    +"<th><input id='length' type='text' class='form-control'></th>"
+			    +"<th><input id='primaryKey' type='checkbox'></th>"
+			    +"<th><input id='isNull' type='checkbox'></th>"
+			    +"<th><input id='detail' type='text' class='form-control'></th>"
+			    +"<th><button type='button' class='btn btn-info btn-sm' onclick="+deleteFunName[flag]+">"
+			    +"<span class='glyphicon glyphicon-trash'></span> 删除</button></th>"
+			    +"</tr>");
+			 
 			});
 			$("#deleteColumn").click(function(){
-				alert("delete one");
-				$("tr").remove(".one");
-			});
-			$("#deleteOne").click(function(){
-				alert("delete ONE");
-				$("tr").remove(".one");
+				$("tr").remove(".test");
 			});
 			/*$("#saveButton").click(function(){
 				var tableNameValue=$("#tableName").val();
@@ -43,6 +47,37 @@
 				window.location.href="test.jsp?tableName="+tableNameValue;
 			});*/
 		});
+		function deleteOne(){
+			$("tr").remove(".one");
+		}
+		function deleteTwo(){
+			$("tr").remove(".two");
+		}
+		function deleteThree(){
+			$("tr").remove(".three");
+		}
+		function deleteFour(){
+			$("tr").remove(".four");
+		}
+		function deleteFive(){
+			$("tr").remove(".five");
+		}
+		function deleteSix(){
+			$("tr").remove(".six");
+		}
+		function deleteSeven(){
+			$("tr").remove(".seven");
+		}
+		function deleteEight(){
+			$("tr").remove(".eight");
+		}
+		function deleteNine(){
+			$("tr").remove(".nine");
+		}
+		function deleteTen(){
+			$("tr").remove(".ten");
+		}
+
 	</script>
 </head>
 </head>

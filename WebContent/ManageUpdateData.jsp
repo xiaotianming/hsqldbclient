@@ -76,10 +76,9 @@
     		/*String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
     		String database = (String)session.getAttribute("database");*/
+    		String tbName=request.getParameter("tbName");			//表名
+    		session.setAttribute("tbName",tbName);					//将表名存入session
     		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-    		session.setAttribute("username","SA");
-    		session.setAttribute("password","");
-    		session.setAttribute("database","mydb");
     		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
@@ -89,104 +88,83 @@
     		Statement stmt = conn.createStatement();
     		ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");
     		String a="a";
-    		  while(rs.next()) {
-    				String name = rs.getString("TABLE_NAME");	
-    				a=a+"a";
       		%>
-    			<div class="panel panel-warning">
-        			<div class="panel-heading">
-            			<h4 class="panel-title">        
-                			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
-                				<%out.println(name);%>
-                				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
-                			</a>
-            			</h4>
-        			</div>
-        			<div id=<%=a%> class="panel-collapse collapse in">
-        			<%
+            	<h3 class="text-primary" style="text-align:center;">        
+                		<%out.println(tbName);%>
+            	</h3>
+        		<%
         			Statement stat = conn.createStatement();
-        			String sql="select COLUMN_NAME from information_schema.COLUMNS where table_name = '"+name+"'";
+        			String sql="select COLUMN_NAME from information_schema.COLUMNS where table_name = '"+tbName+"'";
         		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
         		    Vector<Object> vec = new Vector<Object>(); 
         		    while(per.next())
         		    {
         		    	vec.add(per.getString("COLUMN_NAME"));
         		    }
-        		    sql="select * from "+name;
+        		    sql="select * from "+tbName;
         		    per=stat.executeQuery(sql);
         		    int i=0,num=vec.size();
-        			%>
-            			<div class="panel-body">
-                			<table class="table table-bordered">
-  								<thead>
-    								<tr>
-    									<%
-										for(i=0;i<num;i++) 
-										{
-										%>
-											<td><%=vec.get(i)%></td>
-										<%
-										}
-    									%>
-    								</tr>
-  								</thead>
-  								<tbody>
-    								<tr>
-    									<%
-    									while(per.next()) 
-    									{
-    										%>
-    										<tr>
-    										<%
-    										for(i=1;i<=num;i++)
-    										{
-    											%>
-    											<td><%=per.getString(i)%></td>
-    											<%
-    										}
-    										%>
-    										</tr>
-    										<%
-    									}  
-    									%>
-    								</tr>
-  								</tbody>
-							</table>
-							
-							<div class="btn-toolbar" role="toolbar">
-								<div class="btn-group">
-									<form action="ManageInsertData.jsp" method="post">
-										<input type = "hidden" name="tbName" value="<%=name%>"/>
-										<button class="btn btn-info btn-sm" type="submit">
-          									<span class="glyphicon glyphicon-plus"></span> 添加数据
-        								</button>
-        							</form>	
-        						</div>
-        						
-								<div class="btn-group">
-    								<form action="ManageUpdateData.jsp" method="post">
-    									<input type = "hidden" name="tbName" value="<%=name%>"/>
-										<button class="btn btn-warning btn-sm" type="submit">
-          									<span class="glyphicon glyphicon-pencil"></span> 修改数据
-        								</button>
-        							</form>	 
-        						</div>
- 								<div class="btn-group">						
-        							<form action="ManageDeleteData.jsp" method="post">
-        								<input type = "hidden" name="tbName" value="<%=name%>"/>
-										<button class="btn btn-danger btn-sm" type="submit">
-          									<span class="glyphicon glyphicon-trash"></span> 删除数据
-        								</button>
-        							</form>	
-        						</div>
-        					</div>	
-            			</div>
-        			</div>
-    			</div>
-    			<%}; %> 	   			
-    		</div>
-		</div>
-	  </div>
-    </div>   
+        		%>
+                <table class="table table-bordered">
+  					<thead>
+    					<tr>
+    					<%
+							for(i=0;i<num;i++) 
+							{
+						%>
+							<td><%=vec.get(i)%></td>
+						<%
+							}
+    					%>
+    					<td> 选择  </td>
+    					</tr>
+  					</thead>
+  					<tbody>
+    					<tr>
+    					<form action="UpdateData.jsp" method="post">
+    					<%
+    						while(per.next()) 
+    						{
+    						%>
+    							<tr>
+    							<%
+    							String key=per.getString(1);
+    							for(i=1;i<=num;i++)
+    							{
+    							%>
+    							<td><%=per.getString(i)%></td>
+    							<%
+    							}
+    							%>
+    							<td><input type="radio" name="key" value="<%=key%>" /></td>
+    							</tr>
+    						<%
+    						}  
+    						%>
+    						<tr>
+    						<td> 请输入修改内容</td>
+							<% 
+								for(i=1;i<num;i++)
+								{ 
+								%>
+									<td><input type = "text" name="<%=vec.get(i)%>" class="form-control"/></td>
+								<%
+								}
+							%> 
+							<td> &nbsp </td>
+							</tr>
+							<tr>
+							<button class="btn btn-info btn-sm" type="submit">
+          						<span class="glyphicon glyphicon-plus"></span> 修改
+        					</button>
+        					<br></br>
+        					</tr>
+        					</form>		
+        			</tbody>
+				</table>
+            </div>
+        </div>
+    </div>	   			
+  </div>   
 </body>
 </html>
