@@ -54,5 +54,37 @@
     	</div>
 	</nav>
 	
+	<div class="container">
+	  <div class="row">
+      	<div class="col-sm-12">
+			<div style="padding: 10px;">
+    			<form class="bs-example bs-example-form" role="form">
+    				<h3 class="text-primary" style="text-align:center;">所有用户列表</h3>
+    				<br>
+        			
+					<table class="table table-striped">
+  						<caption></caption>
+  						<thead>
+   							<tr>
+      							<th>用户名</th>
+      							<th>密码</th>
+      							<th>操作</th>
+    						</tr>
+  						</thead>
+  						<tbody>
+    						<tr>
+      							<th>huyuhan</th>
+      							<th>123</th>
+      							<th></th>
+    						</tr>
+  						</tbody>
+					</table>
+        			
+    			</form>
+			</div>			
+		</div>
+	  </div>
+    </div>
+	
 </body>
 </html>

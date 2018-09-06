@@ -12,6 +12,23 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<script>
+		$(document).ready(function(){
+  			$("#cancelButton").click(function(){
+    			$("#name").val("");
+  				$("#password").val("");
+  				$("#password2").val("");
+  			});
+  			$("#saveButton").click(function(){
+  				var password = $("#password").val();
+  				var password2 = $("#password2").val();
+  				if(password!=password2)
+  					alert("两次密码输入不一致，请重新输入");
+  			});
+		});
+	</script>
+	
 </head>
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
@@ -52,5 +69,44 @@
     		</div>
     	</div>
 	</nav>
+	
+	<div class="container">
+	  <div class="row">
+      	<div class="col-sm-12">
+			<div style="padding: 10px;">
+    			<form class="bs-example bs-example-form" role="form">
+    				<h3 class="text-primary" style="text-align:center;">创建用户</h3>
+    				<br>
+        			<div class="input-group">
+            			<span class="input-group-addon">用户名</span>
+            			<input id="name" type="text" class="form-control" placeholder="请输入用户名">
+        			</div>
+        			<br>
+        			<div class="input-group">
+            			<span class="input-group-addon">密 码</span>
+           				<input id="password" type="password" class="form-control" placeholder="请输入密码">
+       	 			</div>
+       	 			<br>
+       	 			<div class="input-group">
+            			<span class="input-group-addon">密 码</span>
+           				<input id="password2" type="password" class="form-control" placeholder="请再次输入密码确认">
+       	 			</div>
+       	 			<br>
+       	 			<table align="center">
+					<tbody>
+						<tr>
+							<td><button id="saveButton" class="btn btn-success">确定</button></td>
+							<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+							<td><button id="cancelButton" class="btn btn-default">取消</button></td>
+						</tr>
+					</tbody>
+					</table>
+    			</form>
+			</div>
+      				
+		</div>
+	  </div>
+    </div>
+	
 </body>
 </html>
