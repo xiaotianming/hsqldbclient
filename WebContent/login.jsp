@@ -21,6 +21,8 @@
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
 		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>
+		
+		
 	</div>
 	<br><br>
 	<form class="form-horizontal" role="form" action="index.jsp">
