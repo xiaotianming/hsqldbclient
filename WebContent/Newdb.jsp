@@ -12,6 +12,7 @@
 <form action="newdatabase.jsp">
         <table align="center" valign="center">
             <tr><th>数据库创建页面</th></tr>
+            
             <tr>
                 <td>database</td>
                 <td width="500px"><input type="text" name="databasename"/></td>
