@@ -18,12 +18,13 @@
   			$("#excuteButton").click(function(){
     			
   			});
-  			$("#clearButton").click(function(){
-    			$("#inputArea").val("");
-  			});
   			$("#createButton").click(function(){
   				var inputValue= $("#inputArea").val();
   				window.location.href="createview.jsp?statement="+inputValue;
+  			});
+  			$("#deleteButton").click(function(){
+  				var inputValue= $("#deleteView1").val();
+  				window.location.href="deleteview.jsp?statement="+inputValue;
   			});
 		});
 	</script>
@@ -121,13 +122,13 @@
 								<div class="form-group">
 									<div class="input-group" style="width:300px">
     									<span class="input-group-addon"> 视图名 </span>
-    									<input id="tableName" type="text" class="form-control" placeholder="请输入视图名查询">
+    									<input id="selectView1" type="text" class="form-control" placeholder="请输入视图名查询">
     								</div> 									
     								<br>
 									<div class="btn-toolbar" role="toolbar">
 										<div class="btn-group">
 										<!--#代替跳转JSP-->
-    										<a href="#" class="btn btn-success btn-sm">
+    										<a class="btn btn-success btn-sm">
           										<span class="glyphicon glyphicon-play"></span> 查询
         									</a>
 										</div>
@@ -155,13 +156,13 @@
 								<div class="form-group">
 									<div class="input-group" style="width:300px">
     									<span class="input-group-addon"> 视图名 </span>
-    									<input id="tableName" type="text" class="form-control" placeholder="请输入视图名删除">
+    									<input id="deleteView1" type="text" class="form-control" placeholder="请输入视图名删除">
     								</div> 									
     								<br>
 									<div class="btn-toolbar" role="toolbar">
 										<div class="btn-group">
 										<!--#代替跳转JSP-->
-    										<a href="#" class="btn btn-danger btn-sm">
+    										<a id="deleteButton" class="btn btn-danger btn-sm">
           										<span class="glyphicon glyphicon-remove"></span> 删除
         									</a>
 										</div>
