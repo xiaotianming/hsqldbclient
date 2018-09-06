@@ -4,6 +4,8 @@
 	by huyuhan 09-04-->
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.sql.Connection"%>
 <html>
 <head>
 	<title>HSQL Manage System</title>
@@ -65,12 +67,27 @@
 	  <div class="row">
       	<div class="col-sm-12">
       		<div class="panel-group" id="accordion">
-      		
+      		<%
+    		/*String username = (String)session.getAttribute("username");
+    		String password = (String)session.getAttribute("password");
+    		String database = (String)session.getAttribute("database");*/
+    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+    		Class.forName("org.hsqldb.jdbcDriver");
+    		
+    		  // 2、获取连接
+    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+    		  // 3、创建语句
+    		Statement stmt = conn.createStatement();
+    		ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");
+    		  while(rs.next()) {
+    				String name = rs.getString("TABLE_NAME");			
+      		%>
     			<div class="panel panel-warning">
         			<div class="panel-heading">
             			<h4 class="panel-title">
                 			<a data-toggle="collapse" data-parent="#accordion" href="#One">
-                				Student
+                				<%out.println(name); %>
                 				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
                 			</a>
             			</h4>
@@ -101,43 +118,7 @@
             			</div>
         			</div>
     			</div>
-    			
-    			<div class="panel panel-warning">
-        			<div class="panel-heading">
-            			<h4 class="panel-title">
-                			<a data-toggle="collapse" data-parent="#accordion" href="#Two">
-                				Teacher
-                				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
-                			</a>
-            			</h4>
-        			</div>
-        			<div id="Two" class="panel-collapse collapse in">
-            			<div class="panel-body">
-                			<table class="table table-bordered">
-  								<thead>
-    								<tr>
-    									<th> 教师</th>
-    									<th> 姓名</th>
-    									<th> 年龄</th>
-    									<th> 选择</th>
-    								</tr>
-  								</thead>
-  								<tbody>
-    								<tr>
-    									<th> 201508010218</th>
-    									<th> 胡雨菡</th>
-    									<th> 1</th>
-    									<th><input name="columnSelect" type="radio"></th>
-    								</tr>
-  								</tbody>
-							</table>
-							<a href="#" class="btn btn-info btn-sm">
-          						<span class="glyphicon glyphicon-trash"></span> 删除
-        					</a>		
-            			</div>
-        			</div>
-    			</div>
-    			
+    			<%}; %>    			
     		</div>
 		</div>
 	  </div>
