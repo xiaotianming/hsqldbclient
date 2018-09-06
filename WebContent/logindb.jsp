@@ -63,15 +63,14 @@
 	  session.setAttribute("database",database);
 	  String dbs="jdbc:hsqldb:hsql://localhost/"+database;
 	  Class.forName("org.hsqldb.jdbcDriver");
-	  System.out.print(username);
-	  System.out.print(password);
-	  System.out.print(dbs);
+	  //System.out.print(username);
+	  //System.out.print(password);
+	  //System.out.print(dbs);
 	  // 2、获取连接
 	  Connection conn = DriverManager.getConnection(dbs, username, password);
 
 	  // 3、创建语句
 	  Statement stmt = conn.createStatement();
-	  System.out.print("aa");
 	%>
 </body>
 </html>
