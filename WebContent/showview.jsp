@@ -5,11 +5,14 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.sql.Connection"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>打印成功</title>
+<title>查询视图</title>
 </head>
 <body>
+
 <%
 
+try{
+	
   String words = request.getParameter("statement");
   
   //String dbs="jdbc:hsqldb:hsql://localhost/"+database;
@@ -41,7 +44,6 @@
 	  }
   }
   
-  try{
 	  ResultSet rs = stmt.executeQuery("SELECT * FROM "+words+";");
 	  ResultSetMetaData   mtdt=rs.getMetaData(); 
 	  int count=mtdt.getColumnCount();
@@ -87,17 +89,29 @@
 			  </table>
 			  <%
 			}
-	  out.println("视图打印成功");
+	  %>
+	  <h1>
+	  <%
+	  out.println("视图查询成功");
+	  %>
+	  </h1>
+	  <%
   }
   catch(Exception e)
   {
-	  out.println("视图打印失败");
+	  %>
+	  <h1>
+	  <%
+	  out.println("视图查询失败");
+	  %>
+	  </h1>
+	  <%
 	  e.printStackTrace();
   }
 
   %>
   
-<form action="svpage.jsp">
+<form action="viewManage.jsp">
 <input type="submit" value="返回">
 </form>
 </body>
