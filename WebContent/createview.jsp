@@ -4,7 +4,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.sql.Connection"%>
-<%@ page import="java.io.IOException"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>创建视图</title>
 </head>
