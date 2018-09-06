@@ -11,7 +11,6 @@
 <body>
 
 <%
-String result = "";
 
 try{
 	  String words = request.getParameter("statement");
