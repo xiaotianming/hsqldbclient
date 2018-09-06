@@ -49,7 +49,7 @@
 			<table align="center">
 			<tbody>
 			<tr>
-			<td><button type="submit" class="btn btn-success" onclick="myLogin()">登录</button></td>
+			<td><button type="submit" class="btn btn-success">登录</button></td>
 			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
 			<td><button type="submit" class="btn btn-default">注册</button></td>
 			</tr>
