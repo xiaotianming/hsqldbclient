@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@page import="java.util.Vector" %>
 <%@ page import="java.sql.Connection"%>
 <html>
 <head>
@@ -76,6 +77,9 @@
     		String password = (String)session.getAttribute("password");
     		String database = (String)session.getAttribute("database");*/
     		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		session.setAttribute("username","SA");
+    		session.setAttribute("password","");
+    		session.setAttribute("database","mydb");
     		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
@@ -99,28 +103,83 @@
             			</h4>
         			</div>
         			<div id=<%=a%> class="panel-collapse collapse in">
+        			<%
+        			Statement stat = conn.createStatement();
+        			String sql="select COLUMN_NAME from information_schema.COLUMNS where table_name = '"+name+"'";
+        		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
+        		    Vector<Object> vec = new Vector<Object>(); 
+        		    while(per.next())
+        		    {
+        		    	vec.add(per.getString("COLUMN_NAME"));
+        		    }
+        		    sql="select * from "+name;
+        		    per=stat.executeQuery(sql);
+        		    int i=0,num=vec.size();
+        			%>
             			<div class="panel-body">
                 			<table class="table table-bordered">
   								<thead>
     								<tr>
-    									<th> 学号</th>
-    									<th> 姓名</th>
-    									<th> 年龄</th>
-    									<th> 选择</th>
+    									<%
+										for(i=0;i<num;i++) 
+										{
+										%>
+											<td><%=vec.get(i)%></td>
+										<%
+										}
+    									%>
     								</tr>
   								</thead>
   								<tbody>
     								<tr>
-    									<th> 201508010218</th>
-    									<th> 胡雨菡</th>
-    									<th> 1</th>
-    									<th><input name="columnSelect" type="radio"></th>
+    									<%
+    									while(per.next()) 
+    									{
+    										%>
+    										<tr>
+    										<%
+    										for(i=1;i<=num;i++)
+    										{
+    											%>
+    											<td><%=per.getString(i)%></td>
+    											<%
+    										}
+    										%>
+    										</tr>
+    										<%
+    									}  
+    									%>
     								</tr>
   								</tbody>
 							</table>
-							<a href="#" class="btn btn-info btn-sm">
-          						<span class="glyphicon glyphicon-trash"></span> 删除
-        					</a>		
+							
+							<div class="btn-toolbar" role="toolbar">
+								<div class="btn-group">
+									<form action="ManageInsertData.jsp" method="post">
+										<input type = "hidden" name="tbName" value="<%=name%>"/>
+										<button class="btn btn-info btn-sm" type="submit">
+          									<span class="glyphicon glyphicon-plus"></span> 添加数据
+        								</button>
+        							</form>	
+        						</div>
+        						
+								<div class="btn-group">
+    								<form action="ManageUpdateData.jsp" method="post">
+    									<input type = "hidden" name="tbName" value="<%=name%>"/>
+										<button class="btn btn-warning btn-sm" type="submit">
+          									<span class="glyphicon glyphicon-pencil"></span> 修改数据
+        								</button>
+        							</form>	
+        						</div>
+ 								<div class="btn-group">						
+        							<form action="ManageDeleteData.jsp" method="post">
+        								<input type = "hidden" name="tbName" value="<%=name%>"/>
+										<button class="btn btn-danger btn-sm" type="submit">
+          									<span class="glyphicon glyphicon-trash"></span> 删除数据
+        								</button>
+        							</form>	
+        						</div>
+        					</div>	
             			</div>
         			</div>
     			</div>
