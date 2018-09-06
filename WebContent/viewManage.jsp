@@ -26,6 +26,10 @@
   				var inputValue= $("#deleteView1").val();
   				window.location.href="deleteview.jsp?statement="+inputValue;
   			});
+  			$("#selectButton").click(function(){
+  				var inputValue= $("#selectView1").val();
+  				window.location.href="showview.jsp?statement="+inputValue;
+  			});
 		});
 	</script>
 </head>
@@ -128,7 +132,7 @@
 									<div class="btn-toolbar" role="toolbar">
 										<div class="btn-group">
 										<!--#代替跳转JSP-->
-    										<a class="btn btn-success btn-sm">
+    										<a id="selectButton" class="btn btn-success btn-sm">
           										<span class="glyphicon glyphicon-play"></span> 查询
         									</a>
 										</div>
