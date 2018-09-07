@@ -61,56 +61,43 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    				<h3 class="text-primary" style="text-align:center;">所有用户列表</h3>
-    				<br>
-        			
-					<table class="table table-striped">
-  						<caption></caption>
-  						<thead>
-   							<tr>
-      							<th>用户名</th>
-      							<th>权限</th>
-      							<th>操作</th>
-    						</tr>
-  						</thead>
-  						<%
-	  			    		/*String username = (String)session.getAttribute("username");
-	  			    		String password = (String)session.getAttribute("password");
-	  			    		String database = (String)session.getAttribute("database");*/
-	  			    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-	  			    		session.setAttribute("username","SA");
-	  			    		session.setAttribute("password","");
-	  			    		session.setAttribute("database","mydb");
-	  			    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
-	  			    		Class.forName("org.hsqldb.jdbcDriver");
-	  			    		
-	  			    		  // 2、获取连接
-	  			    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
-	  			    		  // 3、创建语句
-		        			Statement stat = conn.createStatement();
-		        			String sql="SELECT  USER_NAME,AUTHENTICATION FROM INFORMATION_SCHEMA.SYSTEM_USERS;";
-		        		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
-		        		    while(per.next())
-		        		    {
-		        		    	String name = per.getString("USER_NAME");
-		        		    	String auth = per.getString("AUTHENTICATION");
-		        		    %>
-  						<tbody>
-    						<tr>
-      							<th><%out.println(name);%></th>
-      							<th><%out.println(auth);%></th>
-      							<form action="dropuser.jsp" method="post">
-      							<input type = "hidden" name="usName" value="<%=name%>"/>
-      							<th><button id="detelet" type="submit" class="btn btn-success">删除</button></th>
-      							</form>
-    						</tr>
-  						</tbody>
-  						<%}%>
-					</table>        			    		
-			</div>			
+    			<form class="bs-example bs-example-form" role="form" action="listUser.jsp">
+    				<h3 class="text-primary" style="text-align:center;">用户删除成功</h3>
+       	 			<br>
+       	 			<table align="center">
+					<tbody>
+						<tr>
+							<td><button id="saveButton" type="submit" class="btn btn-success">返回</button></td>
+						</tr>
+					</tbody>
+					</table>
+    			</form>
+			</div>
+      				
 		</div>
 	  </div>
     </div>
+	
+<%
+			/*String username = (String)session.getAttribute("username");
+			String password = (String)session.getAttribute("password");
+			String database = (String)session.getAttribute("database");
+			String dbs="jdbc:hsqldb:hsql://localhost/"+database;*/
+			String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+			Class.forName("org.hsqldb.jdbcDriver");
+			
+			  // 2、获取连接
+			Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+			  // 3、创建语句
+			Statement stmt = conn.createStatement();
+			String user = request.getParameter("usName");
+			try{
+			stmt.execute("drop user "+user+";");
+			}catch (Exception e) {
+				response.getWriter().write("<script>alert('用户名不存在');location.href='listUser.jsp'</script>");
+			    e.printStackTrace();
+			}	
+		%>
 	
 </body>
 </html>
