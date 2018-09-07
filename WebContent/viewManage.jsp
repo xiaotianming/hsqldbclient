@@ -147,7 +147,6 @@
 										{
 										try{
 										  
-										  //String dbs="jdbc:hsqldb:hsql://localhost/"+database;
 										  Class.forName("org.hsqldb.jdbcDriver");
 										
 										  // 2、获取连接
@@ -157,7 +156,6 @@
 										  Statement stmt = conn.createStatement();
 										  
 										  String tb=null;
-										  //System.out.println(words);
 										  String[] s=words.split(" ");
 										  
 										  for(int i=0;i<s.length;i++)
@@ -211,7 +209,7 @@
 														  %>
 														  <td width="100">
 														  <%
-														out.print(rs.getString(k)/*+" "+rs.getString(2)*/);
+														out.print(rs.getString(k));
 														
 														  %>
 														  </td>
@@ -293,9 +291,9 @@
 	  </div>
     </div>
     <script type="text/javascript">
-		$(function () { $('#One').collapse('hide')});
+		$(function () { $('#One').collapse('show')});
 		$(function () { $('#Two').collapse('show')});
-		$(function () { $('#Three').collapse('hide')});
+		$(function () { $('#Three').collapse('show')});
 	</script> 
 </body>
 </html>
