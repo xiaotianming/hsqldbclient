@@ -4,6 +4,8 @@
 	by huyuhan 09-04-->
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.sql.Connection"%>
 <html>
 <head>
 	<title>HSQL Manage System</title>
@@ -15,8 +17,8 @@
 	
 	<script>
 		$(document).ready(function(){
-  			$("#excuteButton").click(function(){
-    			
+			$("#clearButton").click(function(){
+    			$("#inputArea").val("");
   			});
   			$("#createButton").click(function(){
   				var inputValue= $("#inputArea").val();
@@ -28,7 +30,7 @@
   			});
   			$("#selectButton").click(function(){
   				var inputValue= $("#selectView1").val();
-  				window.location.href="showview.jsp?statement="+inputValue;
+  				window.location.href="viewManage.jsp?statement="+inputValue;
   			});
 		});
 	</script>
@@ -50,7 +52,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="changeTable.jsp">设计表格</a></li>
+                	    <li><a href="#">其它</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -90,7 +92,7 @@
             			<div class="panel-body">
                 			<form role="form">
 								<div class="form-group">
-									<textarea id="inputArea" class="form-control" rows="5" placeholder="请输入创建视图语句"></textarea>
+									<textarea id="inputArea" class="form-control" rows="5" placeholder="请输入查询视图的SQL语句"></textarea>
 									<br>
 									<div class="btn-toolbar" role="toolbar">
 										<div class="btn-group">
@@ -139,7 +141,116 @@
 									</div>
 									<br>
 									<div class="well">
-										填入查询之后的结果
+									<%
+										String words = request.getParameter("statement");
+										if(words!=null)
+										{
+										try{
+										  
+										  //String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+										  Class.forName("org.hsqldb.jdbcDriver");
+										
+										  // 2、获取连接
+										  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
+										
+										  // 3、创建语句
+										  Statement stmt = conn.createStatement();
+										  
+										  String tb=null;
+										  //System.out.println(words);
+										  String[] s=words.split(" ");
+										  
+										  for(int i=0;i<s.length;i++)
+										  {
+											  if(s[i].toLowerCase().equals("from"))
+											  {
+												  if(s[i+1].endsWith(";"))
+												  {
+													  tb=s[i+1].replaceAll(";","");
+												  }
+												  else
+												  {
+													  tb=s[i+1];
+												  }
+												  break;
+											  }
+										  }
+										  
+											  ResultSet rs = stmt.executeQuery("SELECT * FROM "+words+";");
+											  ResultSetMetaData   mtdt=rs.getMetaData(); 
+											  int count=mtdt.getColumnCount();
+											  %>
+											  <table class="table table-bordered">
+											  	<h3 class="text-primary" style="text-align:center;"><%=words %></h3>
+											  	<thead>
+											  	<tr>
+											  <%
+											  for(int l=1;l<=count;l++){
+												  %>
+												  	<td width="100">
+												  <%
+														out.println(mtdt.getColumnName(l)+'\n');  
+												  %>
+												  	</td>
+												  <%
+											  }
+												  %>
+											  
+											  	</tr>
+											  	</thead>
+											  	<tbody>
+											  <%
+										
+												while(rs.next()) {
+											  %>
+											 	
+											 		<tr>
+													  <%
+													for(int k=1;k<=count;k++)
+													{
+														  %>
+														  <td width="100">
+														  <%
+														out.print(rs.getString(k)/*+" "+rs.getString(2)*/);
+														
+														  %>
+														  </td>
+														  <%
+													}
+													  /*out.print("<br>");*/
+													  %>
+													  
+													</tr>
+												
+													  <%
+												}
+											  %>
+											  	</tbody>
+											</table>
+											  <%
+										  }
+										  catch(Exception e)
+										  {
+											  %>
+											  <h4 class="text-danger">
+											  <%
+											  out.println("视图查询失败");
+											  %>
+											  </h4>
+											  <%
+											  e.printStackTrace();
+										  }
+										}
+										else{
+											%>
+											<h5 class="text-success">
+											<%
+											out.println("显示视图");
+											%>
+											</h5>
+											<%
+										}
+										  %>
 									</div>
   								</div>
 							</form>
@@ -183,7 +294,7 @@
     </div>
     <script type="text/javascript">
 		$(function () { $('#One').collapse('hide')});
-		$(function () { $('#Two').collapse('hide')});
+		$(function () { $('#Two').collapse('show')});
 		$(function () { $('#Three').collapse('hide')});
 	</script> 
 </body>

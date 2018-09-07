@@ -21,30 +21,15 @@ try{
 	  // 3、创建语句
 	  Statement stmt = conn.createStatement();
 	  stmt.execute(words);
-	  %>
-	  <h1>
-	  <%
-	  out.println("视图创建成功");
-	  %>
-	  </h1>
-	  <%
+	  response.getWriter().write("<script>alert('创建成功！');location.href='viewManage.jsp'</script>");
 	}
   catch(Exception e)
   {
-	  %>
-	  <h1>
-	  <%
-	  out.println("视图创建失败");
-	  %>
-	  </h1>
-	  <%
+	  response.getWriter().write("<script>alert('创建失败！');location.href='viewManage.jsp'</script>");
 	  e.printStackTrace();
   }
 
   %>
  
-<form action="viewManage.jsp">
-<input type="submit" value="返回">
-</form>
 </body>
 </html>

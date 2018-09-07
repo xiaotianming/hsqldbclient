@@ -24,23 +24,12 @@ try{
   Statement stmt = conn.createStatement();
 
 	  stmt.execute("drop view "+words+";");
-	  %>
-	  <h1>
-	  <%
-	  out.println("视图删除成功");
-	  %>
-	  <h1>
-	  <%
+	  response.getWriter().write("<script>alert('视图删除成功！');location.href='viewManage.jsp'</script>");
   }
   catch(Exception e)
   {
-	  %>
-	  <h1>
-	  <%
-	  out.println("视图删除失败");
-	  %>
-	  </h1>
-	  <%
+	  	  response.getWriter().write("<script>alert('视图删除失败！');location.href='viewManage.jsp'</script>");
+
 	  e.printStackTrace();
   }
   %>
