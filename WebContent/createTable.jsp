@@ -1,7 +1,7 @@
-<!--创建表：待开发
+<!--创建表：开发完成
 	a href = #
 	#表格的创建显示
-	by huyuhan 09-04-->
+	by huyuhan & Richard.Li 09-07-->
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
@@ -19,9 +19,8 @@
 	
 	<script>
 		$(document).ready(function(){
-			var flag=0;
+			var flag=1;
 			$("#addColumn").click(function(){
-				flag++;
 			    $("tbody").append("<tr id='idName"+flag
 			    		+"'><th><input id='columnName"+flag
 			    		+"' type='text' class='form-control'></th><th><input id='dataType"+flag
@@ -30,8 +29,8 @@
 			    		+"' type='checkbox'></th><th><input id='isNull"+flag
 			    		+"' type='checkbox'></th><th><input id='detail"+flag
 			    		+"' type='text' class='form-control'></th><th><button id='"+flag+"' type='button' class='btn btn-info btn-sm' onclick='deleteData(this)'><span class='glyphicon glyphicon-trash'></span> 删除</button></th></tr>");
-				$("#add").prop("class",className[flag]);
-				$("#buttonColumn").prop("id",deleteFunName[flag]);
+				
+			    flag++;
 			});
 			$("#deleteColumn").click(function(){
 				$("tr").remove(".test");
@@ -40,43 +39,56 @@
 			$("#saveButton").click(function(){
 				
 				var columnNames = [];
-				for(var i=0;i<=flag;i++){
+				for(var i=0;i<flag;i++){
 					var columnName = document.getElementById("columnName"+i).value;
 					columnNames.push(columnName);
 				}
-				alert(columnNames);
+				//alert(columnNames);
 				
 				var dataTypes = [];
-				for(var i=0;i<=flag;i++){
-					var dataTypes = document.getElementById("dataType"+i).value;
+				for(var i=0;i<flag;i++){
+					var dataType = document.getElementById("dataType"+i).value;
 					dataTypes.push(dataType);
 				}
-				alert(dataTypes);
+				//alert(dataTypes);
 				
 				var lengths = [];
-				for(var i=0;i<=flag;i++){
-					var lengths = document.getElementById("length"+i).value;
+				for(var i=0;i<flag;i++){
+					var length = document.getElementById("length"+i).value;
 					lengths.push(length);
 				}
 				//alert(lengths);
 				
 				var primaryKeys = [];
-				for(var i=0;i<=flag;i++){
-					var primaryKeys = document.getElementById("primaryKey"+i).value;
+				for(var i=0;i<flag;i++){
+					var set=$('#primaryKey'+i).is(':checked');
+					if(set){
+						var primaryKey = "true";
+					}
+					else{
+						var primaryKey = "false";
+					}
 					primaryKeys.push(primaryKey);
+					//var primaryKey = document.getElementById("primaryKey"+i).value;
 				}
 				//alert(primaryKeys);
 				
 				var isNulls = [];
-				for(var i=0;i<=flag;i++){
-					var isNulls = document.getElementById("isNull"+i).value;
+				for(var i=0;i<flag;i++){
+					var set=$('#isNull'+i).is(':checked');
+					if(set){
+						var isNull = "true";
+					}
+					else{
+						var isNull = "false";
+					}
 					isNulls.push(isNull);
 				}
 				//alert(isNulls);
 				
 				var details = [];
-				for(var i=0;i<=flag;i++){
-					var details = document.getElementById("detail"+i).value;
+				for(var i=0;i<flag;i++){
+					var detail = document.getElementById("detail"+i).value;
 					details.push(detail);
 				}
 				//alert(details);
@@ -85,13 +97,14 @@
 				/*var tableNameValue=$("#tableName").val();
 				document.getElementById("primaryKey").checked;
 				alert(tableNameValue);*/
-				window.location.href="test.jsp?tableName1="+tableName
+				window.location.href="createTable.jsp?tableName1="+tableName.value
 													 +"&columnNames1="+columnNames
 													 +"&dataTypes1="+dataTypes
 													 +"&lengths1="+lengths
 													 +"&primaryKeys1="+primaryKeys
 													 +"&isNulls1="+isNulls
-													 +"&details1="+details;
+													 +"&details1="+details
+													 +"&flag1="+flag;
 			});
 		});
 		function deleteData(obj){
@@ -205,95 +218,131 @@
 	<%
 	
 	try{
-		String tableName;
+		String flag="";
+		if(request.getParameter("flag1")!="0"){
+			flag=request.getParameter("flag1");
+		}
+		
+		String tableName="";
 		if(request.getParameter("tableName1")!=null){
 			tableName=request.getParameter("tableName1");
 		}
+		/*if(tableName!=null)
+		System.out.println(tableName);*/
 		
 		String columnName;
 		String columnNames[]=null;
 		if(request.getParameter("columnNames1")!=null){
 			columnName=request.getParameter("columnNames1");
-			columnNames= columnName.split(",");
+			columnNames= columnName.split(",",1000);
 		}
+		/*if(request.getParameter("columnNames1")!=null)
+		System.out.println(request.getParameter("columnNames1"));*/
 		
-		System.out.println(request.getParameter("columnNames1"));
-		
-		for(int i=0;i<columnNames.length;i++){
-			System.out.println(columnNames[i]);
-		}
 		
 		String dataType;
 		String dataTypes[]=null;
 		if(request.getParameter("dataTypes1")!=null){
 			dataType=request.getParameter("dataTypes1");
-			dataTypes= dataType.split(",");
+			dataTypes= dataType.split(",",1000);
 		}
-				
-		for(int i=0;i<dataTypes.length;i++){
-			System.out.println(dataTypes[i]);
-		}
+		/*if(request.getParameter("dataTypes1")!=null)		
+		System.out.println(request.getParameter("dataTypes1"));*/
 		
 		String length;
 		String lengths[]=null;
 		if(request.getParameter("lengths1")!=null){
 			length=request.getParameter("lengths1");
-			lengths= length.split(",");
+			lengths= length.split(",",1000);
 		}
-				
-		for(int i=0;i<lengths.length;i++){
-			System.out.println(lengths[i]);
-		}
+		/*if(request.getParameter("lengths1")!=null)				
+		System.out.println(request.getParameter("lengths1"));*/
 		
 		
 		String primaryKey=request.getParameter("primaryKeys1");
-		String primaryKeys[] = primaryKey.split(",");
+		String primaryKeys[] = primaryKey.split(",",1000);
 		
-		for(int i=0;i<primaryKeys.length;i++){
+		/*for(int i=0;i<primaryKeys.length;i++){
 			System.out.println(primaryKeys[i]);
-		}
+		}*/
 		
-		//boolean primaryKeybool[] =Boolean.valueOf(primaryKeys[]);
 		
 		String isNull=request.getParameter("isNulls1");
-		String isNulls[] = isNull.split(",");
+		String isNulls[] = isNull.split(",",1000);
 		
-		String detail=request.getParameter("details1");
-		String details[] = detail.split(","); 
+		/*for(int i=0;i<isNulls.length;i++){
+			System.out.println(isNulls[i]);
+		}*/
 		
-		/*String dataType=request.getParameter("dataType");
-		String length=request.getParameter("length");
-		boolean primaryKey=Boolean.valueOf(request.getParameter("primaryKey"));
-		String isNull=request.getParameter("isNull");
-		String detail=request.getParameter("detail");*/
-	
-		/* if(tableName!=null){
-			System.out.println(tableName);
+		String detail;
+		String details[]=null;
+		if(request.getParameter("details1")!=null){
+			detail=request.getParameter("details1");
+			details= detail.split(",",1000);
+		}
+		/*if(request.getParameter("details1")!=null)			
+		System.out.println(request.getParameter("details1"));*/
+		
+		
+		
+	   
+		String sqlstmt="create table "+tableName+"(";
+		
+		int flag_number=Integer.parseInt(flag);		
+				
+		for(int i=0;i<flag_number-1;i++){
+						
+			if(primaryKeys[i].equals("true")){
+				primaryKeys[i]="PRIMARY KEY";
+			}else{
+				primaryKeys[i]=" ";
+			}
+									
+			if(isNulls[i].equals("true")){
+				isNulls[i]="NOT NULL";
+			}else{
+				isNulls[i]=" ";
+			}
+			
+			if(lengths[i]==null){
+				lengths[i]="("+lengths[i]+")";
+			}else{
+				lengths[i]=" ";
+			}
+			
+			sqlstmt+=columnNames[i]+" "+dataTypes[i]+lengths[i]+" "+primaryKeys[i]+" "+isNulls[i]+" "+details[i]+", ";
+									
 		}
 		
-	    Class.forName("org.hsqldb.jdbcDriver");				 
+		if(primaryKeys[flag_number-1].equals("true")){
+			primaryKeys[flag_number-1]="PRIMARY KEY";
+		}else{
+			primaryKeys[flag_number-1]=" ";
+		}
+		
+		
+		if(isNulls[flag_number-1].equals("true")){
+			isNulls[flag_number-1]="NOT NULL";
+		}else{
+			isNulls[flag_number-1]=" ";
+		}
+		
+		if(lengths[flag_number-1]==null){
+			lengths[flag_number-1]="("+lengths[flag_number-1]+")";
+		}else{
+			lengths[flag_number-1]=" ";
+		}
+		
+		sqlstmt+=columnNames[flag_number-1]+" "+dataTypes[flag_number-1]+lengths[flag_number-1]+" "+primaryKeys[flag_number-1]+" "+isNulls[flag_number-1]+" "+details[flag_number-1]+");";
+		
+		System.out.println(sqlstmt);
+		
+		Class.forName("org.hsqldb.jdbcDriver");				 
 		Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/mydb", "sa", "");				 
 		Statement stmt = conn.createStatement();
 		
-		String isPrimaryKey;
-		if(primaryKey==true){
-			isPrimaryKey="primarykey";
-		}else{
-			isPrimaryKey=" ";
-		}
-		
-		String _isNull = "";
-		
-		
-		String sqlstmt="create table "+tableName+"("
-		+columnName+" "+dataType+"("+length+")"+" "+isPrimaryKey+" "+_isNull+" "+detail+","
-		;
-		
-		
-		if(tableName!=null)
-		stmt.execute(sqlstmt);*/
-		
-		
+		stmt.execute(sqlstmt);
+				
 		}catch(Exception e){
 			e.printStackTrace();
 		}
