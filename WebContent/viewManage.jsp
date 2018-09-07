@@ -52,7 +52,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable.jsp">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -147,17 +147,13 @@
 										{
 										try{
 										  
-											String username = (String)session.getAttribute("username");
-											String password = (String)session.getAttribute("password");
-											String database = (String)session.getAttribute("database");
-											String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-											//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
-											Class.forName("org.hsqldb.jdbcDriver");
-											
-											  // 2、获取连接
-											Connection conn = DriverManager.getConnection(dbs,username,password);		
-											  // 3、创建语句
-											Statement stmt = conn.createStatement();
+										  Class.forName("org.hsqldb.jdbcDriver");
+										
+										  // 2、获取连接
+										  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
+										
+										  // 3、创建语句
+										  Statement stmt = conn.createStatement();
 										  
 										  String tb=null;
 										  String[] s=words.split(" ");

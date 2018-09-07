@@ -134,7 +134,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable.jsp">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -150,7 +150,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="Newdb.jsp">创建数据库</a></li>
+                	    <li><a href="#">其它</a></li>
                 	</ul>
             	</li>
         	</ul>

@@ -16,11 +16,30 @@
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			var flag=0;
 			$("#addColumn").click(function(){
-			    $("p").append("<a class='list-group-item'><input id='columnName0' type='text' class='form-control'></a>");
+			    $("tbody").append("<tr id='idName"+flag
+			    		+"'><th><input id='columnName"+flag
+			    		+"' type='text' class='form-control'></th><th><input id='dataType"+flag
+			    		+"' type='text' class='form-control'></th><th><input id='length"+flag
+			    		+"' type='text' class='form-control'></th><th><input id='primaryKey"+flag
+			    		+"' type='checkbox'></th><th><input id='isNull"+flag
+			    		+"' type='checkbox'></th><th><input id='detail"+flag
+			    		+"' type='text' class='form-control'></th><th><button id='"+flag+"' type='button' class='btn btn-info btn-sm' onclick='deleteData(this)'><span class='glyphicon glyphicon-trash'></span> 删除</button></th></tr>");
+				
+			    flag++;
+			});
+			$("#deleteColumn").click(function(){
+				$("tr").remove(".test");
 			});
 		});
+		function deleteData(obj){
+			var res = confirm('确认要删除吗？');
+			if(res == true)
+			{
+				$(obj).parents("tr").remove();
+			}						
+		}
 	</script>
 </head>
 <body>
@@ -68,6 +87,12 @@
       	<div class="col-sm-12">
       		<div class="panel-group" id="accordion">
       			<div class="btn-group">
+    				<a id="saveButton" class="btn btn-info btn-sm">
+          				<span class="glyphicon glyphicon-ok"></span> 保存修改
+        			</a>
+				</div>
+				&nbsp
+      			<div class="btn-group">
     				<button id="addColumn" type="button" class="btn btn-success btn-sm">
           				<span class="glyphicon glyphicon-plus"></span> 增加字段
         			</button>
@@ -76,11 +101,22 @@
       		<%
     		String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
+<<<<<<< HEAD
     		String database = (String)session.getAttribute("database");
     		String tbName=request.getParameter("tableName");			//表名
+=======
+    		String database = (String)session.getAttribute("database");*/
+    		String tbName=request.getParameter("tableName");			//获取表名
+>>>>>>> branch 'master' of https://github.com/xiaotianming/hsqldbclient.git
     		session.setAttribute("tbName",tbName);					//将表名存入session
+<<<<<<< HEAD
     		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
     		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+=======
+    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		//连接数据库
+    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+>>>>>>> branch 'master' of https://github.com/xiaotianming/hsqldbclient.git
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
@@ -95,26 +131,54 @@
 					<strong>表名：</strong>   <%out.println(tbName);%>
 				</a>
         		<% 
+        			//通过表名获取列名
         			Statement stat = conn.createStatement();
         			String sql="select COLUMN_NAME from information_schema.COLUMNS where table_name = '"+tbName+"'";
         		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
         		    Vector<Object> vec = new Vector<Object>(); 
         		    while(per.next())
         		    {
+        		    	//获取到的列名（属性名）
         		    	vec.add(per.getString("COLUMN_NAME"));
         		    }
-        		
+        			
         		    int i=0,num=vec.size();
 							for(i=0;i<num;i++) 
-							{
+							{//属性名输出
 						%>
 							<a class="list-group-item"><strong>属性: </strong>   <%=vec.get(i)%></a>
+							<div style="text-align:right">
+								<a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+							</div>
 						<%
 							}
     					%>
-    					<div id="addAttribute">
-    						<p></p>
-    					</div>
+    					<a class="list-group-item">
+    						<table class="table table-bordered">
+  							<thead>
+    							<tr>
+      								<th>字段名</th>
+      								<th>数据类型</th>
+      								<th>长度</th>
+      								<th>主键</th>
+      								<th>非空</th>
+      								<th>注释</th>
+      								<th>操作</th>
+    							</tr>
+  							</thead>
+  							<tbody>
+    							<tr class="test">
+    								<th><input id="columnName0" type="text" class="form-control"></th>
+    								<th><input id="dataType0" type="text" class="form-control"></th>
+    								<th><input id="length0" type="text" class="form-control"></th>
+    								<th><input id="primaryKey0" type="checkbox"></th>
+    								<th><input id="isNull0" type="checkbox"></th>
+    								<th><input id="detail0" type="text" class="form-control"></th>
+    								<th><button id='deleteColumn' type='button' class='btn btn-info btn-sm'><span class='glyphicon glyphicon-trash'></span> 删除</button></th>
+    							</tr>
+  							</tbody>
+						</table>		
+    					</a>
             		</div>
         		</div>
     		</div>	   			
