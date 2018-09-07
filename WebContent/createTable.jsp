@@ -97,7 +97,7 @@
 				/*var tableNameValue=$("#tableName").val();
 				document.getElementById("primaryKey").checked;
 				alert(tableNameValue);*/
-				window.location.href="createTable.jsp?tableName1="+tableName.value
+				window.location.href="createTableOperation.jsp?tableName1="+tableName.value
 													 +"&columnNames1="+columnNames
 													 +"&dataTypes1="+dataTypes
 													 +"&lengths1="+lengths
@@ -163,7 +163,7 @@
       	<div class="col-sm-12">
       		<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group">
-					<a href="javascript:;" id="saveButton" class="btn btn-info btn-sm">
+					<a id="saveButton" class="btn btn-info btn-sm">
           				<span class="glyphicon glyphicon-ok"></span> 保存
         			</a>				
         		</div>
@@ -215,137 +215,6 @@
 		</div>
 	  </div>
     </div>   
-	<%
-	
-	try{
-		String flag="";
-		if(request.getParameter("flag1")!="0"){
-			flag=request.getParameter("flag1");
-		}
-		
-		String tableName="";
-		if(request.getParameter("tableName1")!=null){
-			tableName=request.getParameter("tableName1");
-		}
-		/*if(tableName!=null)
-		System.out.println(tableName);*/
-		
-		String columnName;
-		String columnNames[]=null;
-		if(request.getParameter("columnNames1")!=null){
-			columnName=request.getParameter("columnNames1");
-			columnNames= columnName.split(",",1000);
-		}
-		/*if(request.getParameter("columnNames1")!=null)
-		System.out.println(request.getParameter("columnNames1"));*/
-		
-		
-		String dataType;
-		String dataTypes[]=null;
-		if(request.getParameter("dataTypes1")!=null){
-			dataType=request.getParameter("dataTypes1");
-			dataTypes= dataType.split(",",1000);
-		}
-		/*if(request.getParameter("dataTypes1")!=null)		
-		System.out.println(request.getParameter("dataTypes1"));*/
-		
-		String length;
-		String lengths[]=null;
-		if(request.getParameter("lengths1")!=null){
-			length=request.getParameter("lengths1");
-			lengths= length.split(",",1000);
-		}
-		/*if(request.getParameter("lengths1")!=null)				
-		System.out.println(request.getParameter("lengths1"));*/
-		
-		
-		String primaryKey=request.getParameter("primaryKeys1");
-		String primaryKeys[] = primaryKey.split(",",1000);
-		
-		/*for(int i=0;i<primaryKeys.length;i++){
-			System.out.println(primaryKeys[i]);
-		}*/
-		
-		
-		String isNull=request.getParameter("isNulls1");
-		String isNulls[] = isNull.split(",",1000);
-		
-		/*for(int i=0;i<isNulls.length;i++){
-			System.out.println(isNulls[i]);
-		}*/
-		
-		String detail;
-		String details[]=null;
-		if(request.getParameter("details1")!=null){
-			detail=request.getParameter("details1");
-			details= detail.split(",",1000);
-		}
-		/*if(request.getParameter("details1")!=null)			
-		System.out.println(request.getParameter("details1"));*/
-		
-		
-		
-	   
-		String sqlstmt="create table "+tableName+"(";
-		
-		int flag_number=Integer.parseInt(flag);		
-				
-		for(int i=0;i<flag_number-1;i++){
-						
-			if(primaryKeys[i].equals("true")){
-				primaryKeys[i]="PRIMARY KEY";
-			}else{
-				primaryKeys[i]=" ";
-			}
-									
-			if(isNulls[i].equals("true")){
-				isNulls[i]="NOT NULL";
-			}else{
-				isNulls[i]=" ";
-			}
-			
-			if(lengths[i]==null){
-				lengths[i]="("+lengths[i]+")";
-			}else{
-				lengths[i]=" ";
-			}
-			
-			sqlstmt+=columnNames[i]+" "+dataTypes[i]+lengths[i]+" "+primaryKeys[i]+" "+isNulls[i]+" "+details[i]+", ";
-									
-		}
-		
-		if(primaryKeys[flag_number-1].equals("true")){
-			primaryKeys[flag_number-1]="PRIMARY KEY";
-		}else{
-			primaryKeys[flag_number-1]=" ";
-		}
-		
-		
-		if(isNulls[flag_number-1].equals("true")){
-			isNulls[flag_number-1]="NOT NULL";
-		}else{
-			isNulls[flag_number-1]=" ";
-		}
-		
-		if(lengths[flag_number-1]==null){
-			lengths[flag_number-1]="("+lengths[flag_number-1]+")";
-		}else{
-			lengths[flag_number-1]=" ";
-		}
-		
-		sqlstmt+=columnNames[flag_number-1]+" "+dataTypes[flag_number-1]+lengths[flag_number-1]+" "+primaryKeys[flag_number-1]+" "+isNulls[flag_number-1]+" "+details[flag_number-1]+");";
-		
-		System.out.println(sqlstmt);
-		
-		Class.forName("org.hsqldb.jdbcDriver");				 
-		Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/mydb", "sa", "");				 
-		Statement stmt = conn.createStatement();
-		
-		stmt.execute(sqlstmt);
-				
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-    %> 
+
 </body>
 </html>
