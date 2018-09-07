@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-	<script type="text/javascript">
+	<script type="text/javascript">	
 		$(document).ready(function(){
 			var flag=[];
 			var a="#a";
@@ -44,7 +44,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable.jsp">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -98,7 +98,7 @@
             			<h4 class="panel-title">        
                 			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
                 				<%out.println(name);%>
-                				<a href="#">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-trash"></span></a>
+                				<a href="#" class="right"><span class="glyphicon glyphicon-trash"></span></a>
                 			</a>
             			</h4>
         			</div>

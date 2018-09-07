@@ -16,11 +16,12 @@
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../js/login.js"></script>
+	
 </head>
 
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
-		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>		
+		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>
 	</div>
 	<br><br>
 	<form class="form-horizontal" role="form" action="logindb.jsp">
@@ -48,7 +49,7 @@
 			<table align="center">
 			<tbody>
 			<tr>
-			<td><button type="submit" class="btn btn-success" onclick="myLogin()">登录</button></td>
+			<td><button type="submit" class="btn btn-success">登录</button></td>
 			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
 			<td><button type="submit" class="btn btn-default">注册</button></td>
 			</tr>

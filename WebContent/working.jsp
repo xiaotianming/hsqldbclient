@@ -17,7 +17,6 @@
 		$(document).ready(function(){
   			$("#clearButton").click(function(){
     			$("#inputArea").val("");
-  				$("#outputArea").val("");
   			});
 		});
 	</script>
@@ -40,7 +39,7 @@
                 	<ul class="dropdown-menu">
                     	<li><a href="listTable.jsp">查询所有</a></li>
                     	<li><a href="createTable.jsp">创建</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="changeTable.jsp">设计表格</a></li>
                 	</ul>
 				</li>
             	<li class="dropdown">
@@ -98,7 +97,9 @@
         				</button>
         			</div>
         			<br>
-    				<textarea id="outputArea" class="form-control" rows="25"></textarea>
+        			<div class="well">
+						填入查询之后的结果
+					</div>
   				</div>
 			</form>
 		</div>
