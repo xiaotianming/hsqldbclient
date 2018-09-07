@@ -24,6 +24,7 @@
 				flag[i]=a;
 				$(function () { $(flag).collapse('hide')});
 			}
+	
 		});
    </script>
 </head>
@@ -93,12 +94,15 @@
     				String name = rs.getString("TABLE_NAME");	
     				a=a+"a";
       		%>
-    			<div class="panel panel-warning">
+    			<div class="panel panel-info">
         			<div class="panel-heading">
             			<h4 class="panel-title">        
                 			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
-                				<%out.println(name);%>
-                				<a href="#" class="right"><span class="glyphicon glyphicon-trash"></span></a>
+                				<strong><%out.println(name);%></strong>
+                			
+                			<div style="text-align:right">
+                				<a href="deleteTable.jsp?tableName=<%=name%>"><span class="glyphicon glyphicon-trash"></span></a>
+                			</div>
                 			</a>
             			</h4>
         			</div>
