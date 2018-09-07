@@ -101,22 +101,18 @@
       		<%
     		String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
-<<<<<<< HEAD
+
     		String database = (String)session.getAttribute("database");
     		String tbName=request.getParameter("tableName");			//表名
-=======
-    		String database = (String)session.getAttribute("database");*/
-    		String tbName=request.getParameter("tableName");			//获取表名
->>>>>>> branch 'master' of https://github.com/xiaotianming/hsqldbclient.git
+
+    		/*tring database = (String)session.getAttribute("database");
+    		String tbName=request.getParameter("tableName");*/			//获取表名
     		session.setAttribute("tbName",tbName);					//将表名存入session
-<<<<<<< HEAD
     		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
     		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
-=======
     		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
     		//连接数据库
-    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
->>>>>>> branch 'master' of https://github.com/xiaotianming/hsqldbclient.git
+    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
