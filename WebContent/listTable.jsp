@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
-	<script type="text/javascript">
-		.right{display: block;float: right;margin-top: 0;position: absolute;right: 0;top: 0;}
+	<script type="text/javascript">	
 		$(document).ready(function(){
 			var flag=[];
 			var a="#a";
