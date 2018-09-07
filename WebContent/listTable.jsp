@@ -99,11 +99,12 @@
             			<h4 class="panel-title">        
                 			<a data-toggle="collapse" data-parent="#accordion" href="#<%=a%>" id="collapsePage">
                 				<strong><%out.println(name);%></strong>
-                			
+                			</a>
                 			<div style="text-align:right">
+                				<a href="changeTable.jsp?tableName=<%=name%>"><span class="glyphicon glyphicon-pencil"></span></a>
+                				&nbsp&nbsp
                 				<a href="deleteTable.jsp?tableName=<%=name%>"><span class="glyphicon glyphicon-trash"></span></a>
                 			</div>
-                			</a>
             			</h4>
         			</div>
         			<div id=<%=a%> class="panel-collapse collapse in">
