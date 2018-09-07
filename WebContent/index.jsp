@@ -45,7 +45,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
