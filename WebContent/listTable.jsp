@@ -61,7 +61,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">创建数据库</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
@@ -74,18 +74,18 @@
       	<div class="col-sm-12">
       		<div class="panel-group" id="accordion">
       		<%
-    		/*String username = (String)session.getAttribute("username");
+    		String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
-    		String database = (String)session.getAttribute("database");*/
-    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-    		session.setAttribute("username","SA");
-    		session.setAttribute("password","");
-    		session.setAttribute("database","mydb");
-    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+    		String database = (String)session.getAttribute("database");
+    		System.out.print(username);
+    		System.out.print(password);
+    		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
-    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+    		//Connection conn = DriverManager.getConnection(dbs,"SA", "");	
+    		Connection conn = DriverManager.getConnection(dbs,username,password);	
     		  // 3、创建语句
     		Statement stmt = conn.createStatement();
     		ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");

@@ -48,7 +48,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
@@ -60,7 +60,7 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    			<form class="bs-example bs-example-form" role="form" action="index.jsp">
+    			<form class="bs-example bs-example-form" role="form" action="listUser.jsp">
     				<h3 class="text-primary" style="text-align:center;">用户创建成功</h3>
        	 			<br>
        	 			<table align="center">
@@ -78,15 +78,15 @@
     </div>
 	
 <%
-	/*String username = (String)session.getAttribute("username");
+	String username = (String)session.getAttribute("username");
 	String password = (String)session.getAttribute("password");
 	String database = (String)session.getAttribute("database");
-	String dbs="jdbc:hsqldb:hsql://localhost/"+database;*/
-	String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+	String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+	//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
 	Class.forName("org.hsqldb.jdbcDriver");
 	
 	  // 2、获取连接
-	Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+	Connection conn = DriverManager.getConnection(dbs,username,password);		
 	  // 3、创建语句
 	Statement stmt = conn.createStatement();
 	String user = request.getParameter("newusername");
@@ -95,12 +95,14 @@
 	if(!pass.equals(pass2)){
 	response.getWriter().write("<script>alert('两次密码输入不一致，请重新输入');location.href='createUser.jsp'</script>");
 	}
+	else{
 	try{
 	stmt.execute("create user "+user+" password '"+pass+"' admin");
 	}catch (Exception e) {
 		response.getWriter().write("<script>alert('用户名已存在');location.href='createUser.jsp'</script>");
 	    e.printStackTrace();
-	}		
+	}	
+	}
 %>
 </body>
 </html>

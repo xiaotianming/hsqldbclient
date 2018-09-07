@@ -74,20 +74,18 @@
     						</tr>
   						</thead>
   						<%
-	  			    		/*String username = (String)session.getAttribute("username");
+	  			    		String username = (String)session.getAttribute("username");
 	  			    		String password = (String)session.getAttribute("password");
-	  			    		String database = (String)session.getAttribute("database");*/
-	  			    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-	  			    		session.setAttribute("username","SA");
-	  			    		session.setAttribute("password","");
-	  			    		session.setAttribute("database","mydb");
-	  			    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+	  			    		String database = (String)session.getAttribute("database");
+	  			    		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+	  			    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
 	  			    		Class.forName("org.hsqldb.jdbcDriver");
 	  			    		
 	  			    		  // 2、获取连接
-	  			    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+	  			    		//Connection conn = DriverManager.getConnection(dbs,"SA", "");	
+	  			    		Connection conn = DriverManager.getConnection(dbs,username, password);
 	  			    		  // 3、创建语句
-		        			Statement stat = conn.createStatement();
+	  			    		Statement stat = conn.createStatement();
 		        			String sql="SELECT  USER_NAME,AUTHENTICATION FROM INFORMATION_SCHEMA.SYSTEM_USERS;";
 		        		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
 		        		    while(per.next())

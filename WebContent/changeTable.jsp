@@ -55,7 +55,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
@@ -74,17 +74,18 @@
 				</div>
 				<br></br>
       		<%
-    		/*String username = (String)session.getAttribute("username");
+    		String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
-    		String database = (String)session.getAttribute("database");*/
+    		String database = (String)session.getAttribute("database");
     		String tbName=request.getParameter("tableName");			//表名
     		session.setAttribute("tbName",tbName);					//将表名存入session
-    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+    		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
-    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+    		//Connection conn = DriverManager.getConnection(dbs,"SA", "");	
+    		Connection conn = DriverManager.getConnection(dbs,username, password);	
     		  // 3、创建语句
     		Statement stmt = conn.createStatement();
     		ResultSet rs=stmt.executeQuery("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES where table_schema='PUBLIC' and TABLE_TYPE='BASE TABLE';");

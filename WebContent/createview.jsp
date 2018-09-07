@@ -12,14 +12,19 @@
 <%
 
 try{
-	  String words = request.getParameter("statement");
-	  Class.forName("org.hsqldb.jdbcDriver");
-	
-	  // 2、获取连接
-	  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
-	  
-	  // 3、创建语句
-	  Statement stmt = conn.createStatement();
+	    String words = request.getParameter("statement");
+		String username = (String)session.getAttribute("username");
+		String password = (String)session.getAttribute("password");
+		String database = (String)session.getAttribute("database");
+		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+		Class.forName("org.hsqldb.jdbcDriver");
+		
+		  // 2、获取连接
+		//Connection conn = DriverManager.getConnection(dbs,"SA", "");	
+		Connection conn = DriverManager.getConnection(dbs,username, password);
+		  // 3、创建语句
+		Statement stmt = conn.createStatement();
 	  stmt.execute(words);
 	  response.getWriter().write("<script>alert('创建成功！');location.href='viewManage.jsp'</script>");
 	}
