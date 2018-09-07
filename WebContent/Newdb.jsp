@@ -88,7 +88,7 @@
         			<br>
         			<div class="input-group">
             			<span class="input-group-addon">数据库别名</span>
-           				<input name="othername" id="password" type="password" class="form-control" placeholder="数据库别名">
+           				<input name="othername" id="othername" type="text" class="form-control" placeholder="数据库别名">
        	 			</div>
        	 			<br>
        	 			<table align="center">
