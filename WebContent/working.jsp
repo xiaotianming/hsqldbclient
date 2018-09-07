@@ -4,6 +4,8 @@
 	by huyuhan 09-04-->
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.sql.Connection"%>
 <html>
 <head>
 	<title>HSQL Manage System</title>
@@ -17,6 +19,10 @@
 		$(document).ready(function(){
   			$("#clearButton").click(function(){
     			$("#inputArea").val("");
+  			});
+  			$("#workButton").click(function(){
+  				var inputValue= $("#inputArea").val();
+  				window.location.href="working.jsp?statement="+inputValue;
   			});
 		});
 	</script>
@@ -71,7 +77,7 @@
 				<div class="form-group">
 					<div class="btn-toolbar" role="toolbar">
 						<div class="btn-group">
-    						<a href="#" class="btn btn-info btn-sm">
+    						<a  id="workButton" class="btn btn-info btn-sm">
           						<span class="glyphicon glyphicon-play"></span> 运行
         					</a>
 						</div>
@@ -98,7 +104,114 @@
         			</div>
         			<br>
         			<div class="well">
-						填入查询之后的结果
+						
+						<%
+
+  String words = request.getParameter("statement");
+  
+	if(words!=null)
+	{
+    try{
+    	Class.forName("org.hsqldb.jdbcDriver");
+
+    	  // 2、获取连接
+    	  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
+
+    	  // 3、创建语句
+    	  Statement stmt = conn.createStatement();
+    	  
+    	  String tb=null;
+    	  String[] s=words.split(" ");
+    	  
+    	  for(int i=0;i<s.length;i++)
+    	  {
+    		  if(s[i].toLowerCase().equals("from"))
+    		  {
+    			  if(s[i+1].endsWith(";"))
+    			  {
+    				  tb=s[i+1].replaceAll(";","");
+    			  }
+    			  else
+    			  {
+    				  tb=s[i+1];
+    			  }
+    			  break;
+    		  }
+    	  }
+    	  ResultSet rs = stmt.executeQuery(words);
+    	  ResultSetMetaData   mtdt=rs.getMetaData();    
+    	  int count=mtdt.getColumnCount();
+		  %>
+		  <table class="table table-bordered">
+		  	<h3 class="text-primary" style="text-align:center;"><%=words %></h3>
+		  	<thead>
+		  	<tr>
+		  <%
+    	  for(int l=1;l<=count;l++){
+    		  %>
+    		  <td width="100">
+    		  <%
+    			out.println(mtdt.getColumnName(l)+'\n');  
+    		  %>
+    		  </td>
+    		  <%
+    	  }
+    		  %>
+    	  
+			</tr>
+			</thead>
+			<tbody>
+    	  <%
+    		while(rs.next()) {
+				  %>
+			 		<tr>
+					  <%
+    			for(int k=1;k<=count;k++)
+    			{
+    				  %>
+    				  <td width="100">
+    				  <%
+    				out.print(rs.getString(k));
+    				
+    				  %>
+    				  </td>
+    				  <%
+    			}
+					  %>
+					  
+					</tr>
+				
+					  <%
+    			}
+		  %>
+		  	</tbody>
+		</table>
+		  <%
+  }
+  catch(Exception e)
+  {
+	  %>
+	  <h4 class="text-danger">
+	  <%
+	  out.println("数据查询失败");
+	  %>
+	  </h4>
+	  <%
+	  e.printStackTrace();
+  }
+}
+	else{
+		%>
+		<h5 class="text-success">
+		<%
+		out.println("显示结果");
+		%>
+		</h5>
+		<%
+	}
+  %>
+  
+  
 					</div>
   				</div>
 			</form>
