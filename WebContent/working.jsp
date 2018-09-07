@@ -107,12 +107,11 @@
 						
 						<%
 
-  String words = request.getParameter("statement");
-  
+    String words = request.getParameter("statement");
 	if(words!=null)
 	{
-    try{
-    	Class.forName("org.hsqldb.jdbcDriver");
+    	try{
+    		Class.forName("org.hsqldb.jdbcDriver");
 
     	  // 2、获取连接
     	  Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/mydb", "SA", "");
@@ -122,7 +121,8 @@
     	  
     	  String tb=null;
     	  String[] s=words.split(" ");
-    	  
+  		if(s[0].toLowerCase().equals("select"))
+  		{
     	  for(int i=0;i<s.length;i++)
     	  {
     		  if(s[i].toLowerCase().equals("from"))
@@ -147,7 +147,8 @@
 		  	<thead>
 		  	<tr>
 		  <%
-    	  for(int l=1;l<=count;l++){
+    	  for(int l=1;l<=count;l++)
+    	  	{
     		  %>
     		  <td width="100">
     		  <%
@@ -155,19 +156,20 @@
     		  %>
     		  </td>
     		  <%
-    	  }
+    	  	}
     		  %>
     	  
 			</tr>
 			</thead>
 			<tbody>
     	  <%
-    		while(rs.next()) {
+    		while(rs.next()) 
+    			{
 				  %>
 			 		<tr>
 					  <%
-    			for(int k=1;k<=count;k++)
-    			{
+    				for(int k=1;k<=count;k++)
+    				{
     				  %>
     				  <td width="100">
     				  <%
@@ -176,7 +178,7 @@
     				  %>
     				  </td>
     				  <%
-    			}
+    				}
 					  %>
 					  
 					</tr>
@@ -187,7 +189,8 @@
 		  	</tbody>
 		</table>
 		  <%
-  }
+  		}
+    	}
   catch(Exception e)
   {
 	  %>
@@ -199,7 +202,7 @@
 	  <%
 	  e.printStackTrace();
   }
-}
+	}
 	else{
 		%>
 		<h5 class="text-success">
