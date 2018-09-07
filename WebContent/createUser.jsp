@@ -23,8 +23,9 @@
   			$("#saveButton").click(function(){
   				var password = $("#password").val();
   				var password2 = $("#password2").val();
-  				if(password!=password2)
-  					alert("两次密码输入不一致，请重新输入");
+  				if(password!=password2){
+  					//alert("两次密码输入不一致，请重新输入");
+  			     } 
   			});
 		});
 	</script>
@@ -62,7 +63,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
@@ -74,28 +75,28 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    			<form class="bs-example bs-example-form" role="form">
+    			<form class="bs-example bs-example-form" role="form" action="USER.jsp">
     				<h3 class="text-primary" style="text-align:center;">创建用户</h3>
     				<br>
         			<div class="input-group">
             			<span class="input-group-addon">用户名</span>
-            			<input id="name" type="text" class="form-control" placeholder="请输入用户名">
+            			<input name="newusername" type="text" class="form-control" placeholder="请输入用户名">
         			</div>
         			<br>
         			<div class="input-group">
             			<span class="input-group-addon">密 码</span>
-           				<input id="password" type="password" class="form-control" placeholder="请输入密码">
+           				<input name="password" id="password" type="password" class="form-control" placeholder="请输入密码">
        	 			</div>
        	 			<br>
        	 			<div class="input-group">
             			<span class="input-group-addon">密 码</span>
-           				<input id="password2" type="password" class="form-control" placeholder="请再次输入密码确认">
+           				<input name="password2" id="password2" type="password" class="form-control" placeholder="请再次输入密码确认">
        	 			</div>
        	 			<br>
        	 			<table align="center">
 					<tbody>
 						<tr>
-							<td><button id="saveButton" class="btn btn-success">确定</button></td>
+							<td><button id="saveButton" type="submit" class="btn btn-success">确定</button></td>
 							<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
 							<td><button id="cancelButton" class="btn btn-default">取消</button></td>
 						</tr>

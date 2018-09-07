@@ -4,6 +4,9 @@
 	by huyuhan 09-04-->
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="java.util.Vector" %>
+<%@ page import="java.sql.Connection"%>
 <html>
 <head>
 	<title>HSQL Manage System</title>
@@ -46,7 +49,7 @@
                     	<li><a href="listUser.jsp">所有用户</a></li>
                     	<li><a href="createUser.jsp">创建用户</a></li>
                     	<li><a href="login.jsp">退出登录</a></li>
-                	    <li><a href="#">其它</a></li>
+                	    <li><a href="Newdb.jsp">创建数据库</a></li>
                 	</ul>
             	</li>
         	</ul>
@@ -58,7 +61,6 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    			<form class="bs-example bs-example-form" role="form">
     				<h3 class="text-primary" style="text-align:center;">所有用户列表</h3>
     				<br>
         			
@@ -67,20 +69,44 @@
   						<thead>
    							<tr>
       							<th>用户名</th>
-      							<th>密码</th>
+      							<th>权限</th>
       							<th>操作</th>
     						</tr>
   						</thead>
+  						<%
+	  			    		/*String username = (String)session.getAttribute("username");
+	  			    		String password = (String)session.getAttribute("password");
+	  			    		String database = (String)session.getAttribute("database");*/
+	  			    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+	  			    		session.setAttribute("username","SA");
+	  			    		session.setAttribute("password","");
+	  			    		session.setAttribute("database","mydb");
+	  			    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+	  			    		Class.forName("org.hsqldb.jdbcDriver");
+	  			    		
+	  			    		  // 2、获取连接
+	  			    		Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+	  			    		  // 3、创建语句
+		        			Statement stat = conn.createStatement();
+		        			String sql="SELECT  USER_NAME,AUTHENTICATION FROM INFORMATION_SCHEMA.SYSTEM_USERS;";
+		        		    ResultSet per = stat.executeQuery(sql);  //用于返回结果
+		        		    while(per.next())
+		        		    {
+		        		    	String name = per.getString("USER_NAME");
+		        		    	String auth = per.getString("AUTHENTICATION");
+		        		    %>
   						<tbody>
     						<tr>
-      							<th>huyuhan</th>
-      							<th>123</th>
-      							<th></th>
+      							<th><%out.println(name);%></th>
+      							<th><%out.println(auth);%></th>
+      							<form action="dropuser.jsp" method="post">
+      							<input type = "hidden" name="usName" value="<%=name%>"/>
+      							<th><button id="detelet" type="submit" class="btn btn-success">删除</button></th>
+      							</form>
     						</tr>
   						</tbody>
-					</table>
-        			
-    			</form>
+  						<%}%>
+					</table>        			    		
 			</div>			
 		</div>
 	  </div>

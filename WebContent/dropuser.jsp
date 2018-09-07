@@ -15,24 +15,7 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
-	<script>
-		$(document).ready(function(){
-  			$("#cancelButton").click(function(){
-    			$("#name").val("");
-  				$("#password").val("");
-  				$("#password2").val("");
-  			});
-  			$("#saveButton").click(function(){
-  				var password = $("#password").val();
-  				var password2 = $("#password2").val();
-  				if(password!=password2){
-  					//alert("两次密码输入不一致，请重新输入");
-  			     } 
-  			});
-		});
-	</script>
-	
+</head>
 </head>
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0;background-color: #3399FF">
@@ -78,25 +61,13 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    			<form class="bs-example bs-example-form" role="form" action="newdatabase.jsp">
-    				<h3 class="text-primary" style="text-align:center;">新建数据库</h3>
-    				<br>
-        			<div class="input-group">
-            			<span class="input-group-addon">数据库名</span>
-            			<input name="databasename" type="text" class="form-control" placeholder="请输入数据库名">
-        			</div>
-        			<br>
-        			<div class="input-group">
-            			<span class="input-group-addon">数据库别名</span>
-           				<input name="othername" id="password" type="password" class="form-control" placeholder="数据库别名">
-       	 			</div>
+    			<form class="bs-example bs-example-form" role="form" action="listUser.jsp">
+    				<h3 class="text-primary" style="text-align:center;">用户删除成功</h3>
        	 			<br>
        	 			<table align="center">
 					<tbody>
 						<tr>
-							<td><button id="saveButton" type="submit" class="btn btn-success">确定</button></td>
-							<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
-							<td><button id="cancelButton" class="btn btn-default">取消</button></td>
+							<td><button id="saveButton" type="submit" class="btn btn-success">返回</button></td>
 						</tr>
 					</tbody>
 					</table>
@@ -106,20 +77,27 @@
 		</div>
 	  </div>
     </div>
+	
 <%
-		/*String username = (String)session.getAttribute("username");
-		String password = (String)session.getAttribute("password");
-		String database = (String)session.getAttribute("database");
-		String dbs="jdbc:hsqldb:hsql://localhost/"+database;*/
-		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
-		Class.forName("org.hsqldb.jdbcDriver");
-		
-		  // 2、获取连接
-		Connection conn = DriverManager.getConnection(dbs,"SA", "");	
-		  // 3、创建语句
-		Statement stmt = conn.createStatement();
-		stmt.execute("SHUTDOWN");
-		conn.close();
-%>
+			/*String username = (String)session.getAttribute("username");
+			String password = (String)session.getAttribute("password");
+			String database = (String)session.getAttribute("database");
+			String dbs="jdbc:hsqldb:hsql://localhost/"+database;*/
+			String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+			Class.forName("org.hsqldb.jdbcDriver");
+			
+			  // 2、获取连接
+			Connection conn = DriverManager.getConnection(dbs,"SA", "");		
+			  // 3、创建语句
+			Statement stmt = conn.createStatement();
+			String user = request.getParameter("usName");
+			try{
+			stmt.execute("drop user "+user+";");
+			}catch (Exception e) {
+				response.getWriter().write("<script>alert('用户名不存在');location.href='listUser.jsp'</script>");
+			    e.printStackTrace();
+			}	
+		%>
+	
 </body>
 </html>
