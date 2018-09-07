@@ -75,7 +75,7 @@
 	  <div class="row">
       	<div class="col-sm-12">
 			<div style="padding: 10px;">
-    			<form class="bs-example bs-example-form" role="form" action="USER.jsp">
+    			<form class="bs-example bs-example-form" role="form" action="NewUSER.jsp">
     				<h3 class="text-primary" style="text-align:center;">创建用户</h3>
     				<br>
         			<div class="input-group">
