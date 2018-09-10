@@ -142,10 +142,13 @@
 							for(i=0;i<num;i++) 
 							{//属性名输出
 						%>
-							<a class="list-group-item"><strong>属性: </strong>   <%=vec.get(i)%></a>
-							<div style="text-align:right">
-								<a href="#"><span class="glyphicon glyphicon-trash"></span></a>
-							</div>
+							<a class="list-group-item">
+								<table>
+									<td><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+									<td>&nbsp&nbsp</td><td>&nbsp&nbsp</td>
+									<td><strong>属性: </strong>   <%=vec.get(i)%></td>
+								</table>
+							</a>
 						<%
 							}
     					%>
