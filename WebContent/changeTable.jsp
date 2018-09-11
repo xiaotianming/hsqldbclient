@@ -184,9 +184,9 @@
 						session.setAttribute("tbName", tbName); //将表名存入session
 						//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
 						//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
-						//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+						String dbs="jdbc:hsqldb:hsql://localhost/"+database;
 						//连接数据库
-						String dbs = "jdbc:hsqldb:hsql://localhost/mydb";
+						//String dbs = "jdbc:hsqldb:hsql://localhost/mydb";
 						Class.forName("org.hsqldb.jdbcDriver");
 
 						// 2、获取连接
