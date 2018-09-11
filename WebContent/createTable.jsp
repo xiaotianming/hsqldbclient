@@ -183,7 +183,7 @@
     		
     		<div class="btn-group">
     			<button id="addColumn" type="button" class="btn btn-warning btn-sm">
-          			<span class="glyphicon glyphicon-plus"></span> 增加字段
+          			<span class="glyphicon glyphicon-plus"></span> 增加属性
         		</button>
 			</div>
 			<br></br>
@@ -191,7 +191,7 @@
     		<table class="table table-bordered">
   				<thead>
     				<tr>
-      					<th>字段名</th>
+      					<th>属性名</th>
       					<th>数据类型</th>
       					<th>长度</th>
       					<th>主键</th>
