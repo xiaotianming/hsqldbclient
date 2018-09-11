@@ -77,10 +77,9 @@
     		String username = (String)session.getAttribute("username");
     		String password = (String)session.getAttribute("password");
     		String database = (String)session.getAttribute("database");
-    		System.out.print(username);
-    		System.out.print(password);
-    		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+    		
+    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
@@ -102,7 +101,7 @@
                 			</a>
                 			<div style="text-align:right">
                 				<a href="changeTable.jsp?tableName=<%=name%>"><span class="glyphicon glyphicon-pencil"></span></a>
-                				&nbsp&nbsp
+                				&nbsp;&nbsp;
                 				<a href="deleteTable.jsp?tableName=<%=name%>"><span class="glyphicon glyphicon-trash"></span></a>
                 			</div>
             			</h4>
