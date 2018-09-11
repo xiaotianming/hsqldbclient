@@ -78,8 +78,8 @@
     		String password = (String)session.getAttribute("password");
     		String database = (String)session.getAttribute("database");
     		
-    		//String dbs="jdbc:hsqldb:hsql://localhost/"+database;
-    		String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+    		String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+    		//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
     		Class.forName("org.hsqldb.jdbcDriver");
     		
     		  // 2、获取连接
