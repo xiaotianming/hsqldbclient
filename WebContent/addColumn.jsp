@@ -77,9 +77,17 @@ try{
 	}
 	/*if(request.getParameter("details1")!=null)			
 	System.out.println(request.getParameter("details1"));*/
+	String username = (String)session.getAttribute("username");
+	String password = (String)session.getAttribute("password");
+	String database = (String)session.getAttribute("database");
 	
-	Class.forName("org.hsqldb.jdbcDriver");				 
-	Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001/mydb", "sa", "");				 
+	String dbs="jdbc:hsqldb:hsql://localhost/"+database;
+	//String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+	Class.forName("org.hsqldb.jdbcDriver");
+	
+	  // 2、获取连接
+	//Connection conn = DriverManager.getConnection(dbs,"SA", "");	
+	Connection conn = DriverManager.getConnection(dbs,username,password);				 
 	Statement stmt = conn.createStatement();	
    		
 	int flag_number=Integer.parseInt(flag);	

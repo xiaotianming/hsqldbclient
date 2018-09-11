@@ -18,14 +18,14 @@
 <% 
 String tableName=(String)session.getAttribute("tbName");
 try{
-	//String db=(String)session.getAttribute("database"); 		//数据库名
-	//String n=(String)session.getAttribute("username"); 			//用户名
-	//String p=(String)session.getAttribute("password"); 		//密码 
+	String db=(String)session.getAttribute("database"); 		//数据库名
+	String n=(String)session.getAttribute("username"); 			//用户名
+	String p=(String)session.getAttribute("password"); 		//密码 
 	//String tableName=(String)session.getAttribute("tbName");	//要删除的数据
 	String columnName=request.getParameter("columnName");
-	String dbs="jdbc:hsqldb:hsql://localhost/mydb";
+	String dbs="jdbc:hsqldb:hsql://localhost/"+db;
 	Class.forName("org.hsqldb.jdbcDriver");  //用class加载动态链接库——驱动程序
-	Connection conn = DriverManager.getConnection(dbs,"sa", "");
+	Connection conn = DriverManager.getConnection(dbs,n, p);
 	Statement stat = conn.createStatement();
     String sql="alter TABLE "+tableName+" drop column "+columnName;
     stat.executeUpdate(sql);
