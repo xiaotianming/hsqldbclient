@@ -142,6 +142,7 @@
     			  break;
     		  }
     	  }
+  		  }
     	  ResultSet rs = stmt.executeQuery(words);
     	  ResultSetMetaData   mtdt=rs.getMetaData();    
     	  int count=mtdt.getColumnCount();
@@ -193,14 +194,13 @@
 		  	</tbody>
 		</table>
 		  <%
-  		}
     	}
   catch(Exception e)
   {
 	  %>
 	  <h4 class="text-danger">
 	  <%
-	  out.println("数据查询失败");
+	  out.println("SQL语句错误");
 	  %>
 	  </h4>
 	  <%
