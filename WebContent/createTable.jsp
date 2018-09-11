@@ -55,7 +55,7 @@
 				var lengths = [];
 				for(var i=0;i<flag;i++){
 					var length = document.getElementById("length"+i).value;
-					lengths.push(length);
+					lengths.push(length); 
 				}
 				//alert(lengths);
 				
