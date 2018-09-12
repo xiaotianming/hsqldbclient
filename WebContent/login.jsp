@@ -39,12 +39,11 @@
   		<div class="row">
   			
     		<div class="col-sm-4">
-    			<br>
-      			<div class="fakeimg"><img src="file:///F:/workspace/DatabaseManageSystem/WebContent/images/timg.gif"></div>
+      			<div class="fakeimg"><img src="F:/workspace/DatabaseManageSystem/WebContent/images/timg.jpg"></div>
     		</div>
     		
     		<div class="col-sm-8">
-    			
+    			<br><br><br>
 				<form class="form-horizontal" role="form" action="logindb.jsp">
 					<h3 class="text-info" style="text-align:center"><strong>HyperSQL数据库管理系统登录</strong></h3>
 					<br><br>
