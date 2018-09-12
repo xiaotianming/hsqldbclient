@@ -39,7 +39,7 @@
   		<div class="row">
   			
     		<div class="col-sm-4">
-      			<div class="fakeimg"><img src="F:/workspace/DatabaseManageSystem/WebContent/images/timg.jpg"></div>
+      			<div class="fakeimg"><img src="images/timg.jpg"></div>
     		</div>
     		
     		<div class="col-sm-8">
