@@ -55,7 +55,6 @@
     	</div>
 	</nav>
 	<br>
-	<h2 class="text-info" style="text-align:center"><strong>HyperSQL</strong></h2>
 	<br>
 	<div class="container">
   		<div class="row">
@@ -68,10 +67,10 @@
 					</ol>   
 					<div class="carousel-inner">
 						<div class="item active">
-							<img src="images/timg.jpg" alt="First slide">
+							<img src="images/image_1.png" alt="First slide">
 						</div>
 						<div class="item">
-							<img src="images/timg.jpg" alt="Second slide">
+							<img src="images/image_2.png" alt="Second slide">
 						</div>
 					</div>
 
