@@ -41,7 +41,7 @@
 	<nav class="navbar navbar-default" role="navigation">
     	<div class="container-fluid">
     		<div class="navbar-header">
-    		    <a class="navbar-brand"><span class="glyphicon glyphicon-home"></span><strong>主菜单</strong></a>
+    		    <a href="index.jsp" class="navbar-brand"><span class="glyphicon glyphicon-home"></span><strong>主菜单</strong></a>
     		</div>
     		<div>
         	<ul class="nav navbar-nav">
