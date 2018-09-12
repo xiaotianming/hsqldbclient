@@ -296,9 +296,9 @@
 	  </div>
     </div>
     <script type="text/javascript">
-		$(function () { $('#One').collapse('show')});
+		$(function () { $('#One').collapse('hide')});
 		$(function () { $('#Two').collapse('show')});
-		$(function () { $('#Three').collapse('show')});
+		$(function () { $('#Three').collapse('hide')});
 	</script> 
 </body>
 </html>
