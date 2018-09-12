@@ -17,6 +17,17 @@
 	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="../js/login.js"></script>
 	
+	<script>
+	$(document).ready(function(){	
+		$("#cancelButton").click(function(){
+			event.preventDefault();
+			$("#inputName").val("");
+			$("#inputPassword").val("");
+			$("#inputDB").val("");
+		});
+	});
+	</script>
+	
 </head>
 
 <body>
@@ -24,39 +35,56 @@
 		<h1><font color="#FFFFFF">HSQL Manage System</font></h1>
 	</div>
 	<br><br>
-	<form class="form-horizontal" role="form" action="logindb.jsp">
-		<div class="form-group">
-			<label for="name" class="col-sm-2 control-label">名字</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" name="firstname" placeholder="请输入用户名">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="password" class="col-sm-2 control-label">密码</label>
-			<div class="col-sm-8">
-				<input type="password" class="form-control" name="password" placeholder="请输入密码">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="dbName" class="col-sm-2 control-label">数据库</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" name="dbName" placeholder="请输入数据库名">
-			</div>
-		</div>
+	<div class="container">
+  		<div class="row">
+  			
+    		<div class="col-sm-4">
+    			<br>
+      			<div class="fakeimg"><img src="file:///F:/workspace/DatabaseManageSystem/WebContent/images/timg.gif"></div>
+    		</div>
+    		
+    		<div class="col-sm-8">
+    			
+				<form class="form-horizontal" role="form" action="logindb.jsp">
+					<h3 class="text-info" style="text-align:center"><strong>HyperSQL数据库管理系统登录</strong></h3>
+					<br><br>
+					<div class="form-group">
+						<label for="name" class="col-sm-2 control-label">名字</label>
+						<div class="col-sm-8">
+							<input id="inputName" type="text" class="form-control" name="firstname" placeholder="请输入用户名">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="password" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-8">
+							<input id="inputPassword" type="password" class="form-control" name="password" placeholder="请输入密码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="dbName" class="col-sm-2 control-label">数据库</label>
+							<div class="col-sm-8">
+								<input id="inputDB" type="text" class="form-control" name="dbName" placeholder="请输入数据库名">
+							</div>
+					</div>
 		
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-8">
-			<table align="center">
-			<tbody>
-			<tr>
-			<td><button type="submit" class="btn btn-success">登录</button></td>
-			<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
-			<td><button type="submit" class="btn btn-default">注册</button></td>
-			</tr>
-			</tbody>
-			</table>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8">
+							<table align="center">
+								<tbody>
+									<tr>
+										<td><button type="submit" class="btn btn-success">登录</button></td>
+										<td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td><td>&nbsp</td>
+										<td><button id="cancelButton" class="btn btn-default">取消</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
-	</form>
+	</div>
 </body>
 </html>
