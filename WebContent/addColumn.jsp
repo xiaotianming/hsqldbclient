@@ -125,7 +125,7 @@ try{
 	
 	
 	
-    response.getWriter().write("<script>alert('添加属性成功');location.href='listTable.jsp'</script>");		
+    response.getWriter().write("<script>alert('添加属性成功');location.href='changeTable.jsp?tableName="+tableName+"'</script>");		
    
     
 }catch(SQLException e){
