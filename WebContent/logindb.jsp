@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.sql.Connection"%>
+<%@ page import="java.io.IOException"%>
 <html>
 <head>
 	<title>HSQL Manage System</title>
@@ -89,6 +90,7 @@
 		</div>
 	</div>
 	<%
+	
 	  String username = request.getParameter("firstname");
 	  session.setAttribute("username",username);  
 	  String password = request.getParameter("password");
@@ -101,10 +103,16 @@
 	  //System.out.print(password);
 	  //System.out.print(dbs);
 	  // 2、获取连接
+	    try
+	  {
 	  Connection conn = DriverManager.getConnection(dbs, username, password);
 
 	  // 3、创建语句
 	  Statement stmt = conn.createStatement();
+	  }catch(SQLException e){
+		 response.getWriter().write("<script>alert('密码或用户名错误');location.href='login.jsp'</script>");
+		 e.printStackTrace();
+	  }
 	%>
 </body>
 </html>
